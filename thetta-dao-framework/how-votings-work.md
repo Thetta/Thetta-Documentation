@@ -1,0 +1,2 @@
+# How Votings work
+

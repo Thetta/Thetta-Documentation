@@ -17,7 +17,7 @@ pragma solidity ^0.4.22;
 import "@thetta/core/contracts/DaoClient.sol";
 
 contract YourCompany is DaoClient {
-  // your business logics goes here
+  // your business logic goes here
 }
 ```
 
