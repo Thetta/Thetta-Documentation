@@ -1,4 +1,4 @@
-# Start using Thetta
+# 1 - Installing Thetta
 
 ## Installing Thetta DAO Framework
 

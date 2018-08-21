@@ -4,10 +4,10 @@
 
 1. Permission manager/Roles
 2. Token manager
-3. Governance subsystem
+3. Governance subsystem \(proposals, votings, etc\)
 4. Reputation subsystem
 5. Dispute Resolution subsystem
-6. Moneyflow \(finances\) subsystem
+6. Moneyflow subsystem
 7. ICO subsystem
 
 ### But what about the Runtime support?
