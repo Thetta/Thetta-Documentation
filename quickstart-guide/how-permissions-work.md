@@ -1,4 +1,4 @@
-# 3 - Setting permissions
+# 3 - Actions + permission
 
 There are many built-in actions provided by **Thetta core**:
 
@@ -50,10 +50,10 @@ contract YourOrganization is DaoClient {
         
         // This will allow any address that is a member of "Managers" group 
         // to execute "issueTokens" method:
-        _dao.allowActionByAnyMemberOfGroup(dao.ISSUE_TOKENS(), ”Managers”);
+        _dao.allowActionByAnyMemberOfGroup(_dao.ISSUE_TOKENS(), ”Managers”);
                   
         // To allow specific address to execute action without any voting:
-        _dao.addActionByAddress(dao.ISSUE_TOKENS(), _superAdmin);
+        _dao.addActionByAddress(_dao.ISSUE_TOKENS(), _superAdmin);
     }
 }
 ```

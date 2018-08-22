@@ -14,8 +14,8 @@ A Blockchain features 1 and 2, but not 3 because whole blockchain behaves like a
 
 Three reasons for Decentralization:
 
-* **Fault tolerance**— decentralized systems are less likely to fail accidentally because they rely on many separate components that are not likely.
-* **Attack resistance**— decentralized systems are more expensive to attack and destroy or manipulate because they lack sensitive central points that can be attacked at much lower cost than the economic size of the surrounding system.
+* **Fault tolerance**— decentralized systems are less likely to fail accidentally because they rely on many separate components that are not likely;
+* **Attack resistance**— decentralized systems are more expensive to attack and destroy or manipulate because they lack sensitive central points that can be attacked at much lower cost than the economic size of the surrounding system;
 * **Collusion resistance** — it is much harder for participants in decentralized systems to collude to act in ways that benefit them at the expense of other participants, whereas the leaderships of corporations and governments collude in ways that benefit themselves but harm less well-coordinated citizens, customers, employees and the general public all the time.
 
 ### **What is a “Sovereign Software”?**
@@ -37,5 +37,5 @@ Cryptoeconomic protocols create financial incentives that drive a network of rat
 1. DAO should be architecturally and politically **decentralized**;
 2. DAO should allow the autonomous logic to make decisions based on **objective** facts provided by other actors;
 3. DAO should **adapt** to changes;
-4. DAO should have a **working business model**/useful economic equilibria;
+4. DAO should have a **working business model**/useful economic equilibria.
 
