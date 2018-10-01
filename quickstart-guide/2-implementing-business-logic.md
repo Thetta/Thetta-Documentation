@@ -20,31 +20,39 @@ Currently, only owner \(initially, this is who deployed it\) of this contract ca
 Imagine you want **CakeOrderingOrganization** to be controlled not only by yourself, but by ALL your friends. So  that is where Thetta comes in:
 
 ```text
-pragma solidity ^0.4.22;
+pragma solidity ^0.4.24;
+
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "zeppelin-solidity/contracts/token/ERC20/MintableToken.sol";
+
 import "@thetta/core/contracts/DaoClient.sol";
-import "@thetta/core/contracts/DaoBase.sol";
+import "@thetta/core/contracts/IDaoBase.sol";
 
-contract CakeOrderingCore is DaoClient {
-   function buySomeCakeInternal() internal { 
-      // some cake ordering business logic goes here
-      ...
-      
-      // imagine we need to issue some tokens to the baker here
-      // (just an example of scenario) 
-   }
+contract CakeOrderingDapp {
+	uint public x = 0;
+
+	constructor() {
+	}
+
+	function buySomeCakeInternal(IDaoBase _daoBase, address _tokenAddress) internal { 
+		x = 1; // write 1 to x
+		_daoBase.issueTokens(_tokenAddress, msg.sender, 100); // issue 100 ERC20 tokens for caller
+	}
 }
 
-contract CakeOrderingOrganizaion is CakeOrderingCore, DaoClient {
-   bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
-   
-   constructor(DaoBase _dao) DaoClient(_dao) {
-   
-   }
-   
-   function buySomeCake() public isCanDo(BUY_SOME_CAKE){
-      buySomeCakeInternal();
-   }
+contract CakeOrderingOrganizaion is CakeOrderingDapp, DaoClient {
+	address public tokenAddress;
+	bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
+
+	constructor(IDaoBase _daoBase, address _tokenAddress) public DaoClient(_daoBase){
+		tokenAddress = _tokenAddress;
+	}
+
+	function buySomeCake() public isCanDo(BUY_SOME_CAKE) { 
+		buySomeCakeInternal(daoBase, tokenAddress);
+	}
 }
+
 ```
 
 {% hint style="info" %}
