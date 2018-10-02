@@ -39,23 +39,18 @@ Thetta Permissions work like AccessControlLists in your OperatingSystems.
 In order to be able to call **issueTokens** action, one needs **ISSUE\_TOKENS** permission to be granted to his account. There are different options how you can set the permissions:
 
 ```
-import "@thetta/core/contracts/DaoClient.sol";
-import "@thetta/core/contracts/DaoBase.sol";
+	function setPermissions(address _boss, address _user) public {
+		// Add some address (user or contract) to Employee group
+		daoBase.addGroupMember("Managers", _boss); 
+		daoBase.allowActionByAddress(daoBase.ISSUE_TOKENS(), "Managers");
 
-contract YourOrganization is DaoClient {
-
-    function setPermissions(DaoBase _dao, address _boss, address _superAdmin) public {
-        // Add some address (user or contract) to Employee group
-        _dao.addGroupMember("Managers", _boss); 
-        
-        // This will allow any address that is a member of "Managers" group 
-        // to execute "issueTokens" method:
-        _dao.allowActionByAnyMemberOfGroup(_dao.ISSUE_TOKENS(), ”Managers”);
-                  
-        // To allow specific address to execute action without any voting:
-        _dao.addActionByAddress(_dao.ISSUE_TOKENS(), _superAdmin);
-    }
-}
+		// This will allow any address that is a member of "Managers" group 
+		// to execute "issueTokens" method:
+		daoBase.allowActionByAnyMemberOfGroup(BUY_SOME_CAKE, "Managers");
+		        
+		// To allow specific address to execute action without any voting:
+		daoBase.allowActionByAddress(BUY_SOME_CAKE, _user);
+	}
 ```
 
 
