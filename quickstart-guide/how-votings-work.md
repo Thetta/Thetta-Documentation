@@ -6,23 +6,23 @@ Usually if you have a permission to call action \(imagine, **issueTokens\)** dir
 
 ```text
 // 1 - Grant myself ISSUE_TOKENS permission
-// i should be the owner of _dao OR i should have MANAGE_GROUPS permission
+// i should be the owner of daoBase OR i should have MANAGE_GROUPS permission
 // to call addGroupMember and allowActionByAnyMemberOfGroup
-_dao.addGroupMember("Managers", msg.sender);
-_dao.allowActionByAnyMemberOfGroup(_dao.ISSUE_TOKENS(), ”Managers”);
+daoBase.addGroupMember("Managers", msg.sender);
+daoBase.allowActionByAnyMemberOfGroup(daoBase.ISSUE_TOKENS(), "Managers");
 
 // 2 - Check permission 
 // this should be 'true'
-bool yesICan = _dao.isCanDoAction(msg.sender, _dao.ISSUE_TOKENS());
+bool yesICan = daoBase.isCanDoAction(msg.sender, daoBase.ISSUE_TOKENS());
  
 // 3 - Mint 100 tokens to employee1
-// _dao is an owner of repToken and controlls it
+// daoBase is an owner of repToken and controlls it
 // to call this action you should have ISSUE_TOKENS permission granted
 // to your account (current msg.sender)
-_dao.issueTokens(repToken.address, employee1, 100);
+daoBase.issueTokens(repToken.address, employee1, 100);
 
 // this will fail because I AM NOT an owner of the repToken
-// but _dao is
+// but daoBase is
 repToken.mint(employee1, 100);
 ```
 
@@ -30,18 +30,18 @@ But sometimes you will want to set permission that this call will rather start v
 
 ```text
 // 1 - ISSUE_TOKENS can be called with voting
-_dao.allowActionByVoting(dao.ISSUE_TOKENS(), token.address);
+daoBase.allowActionByVoting(dao.ISSUE_TOKENS(), token.address);
 
 // 2 - Check permission 
 // this should be 'false'
-bool yesICan = _dao.isCanDoAction(msg.sender, _dao.ISSUE_TOKENS());
+bool yesICan = daoBase.isCanDoAction(msg.sender, daoBase.ISSUE_TOKENS());
 
 // 3 - Mint 100 tokens to employee1
 // now this will create new proposal and start new voting automatically
-_dao.issueTokens(repToken.address, employee1, 100);
+daoBase.issueTokens(repToken.address, employee1, 100);
 ```
 
-In this case Thetta will automatically create a new Proposal and start a new Voting. Once voting is finished with "yes", action will called automatically:
+In this case Thetta will automatically create a new Proposal and start a new Voting. Once voting is finished with "yes", action will be called automatically:
 
 ![](https://lh6.googleusercontent.com/LDt350Tq8oWYWtUMVBqR6fS_8uA2aHd9VncFhKSVryFuhmdf5d1ivfluON2KDb_IiW1JNwEj7ORb7-jvIYA-6uiI0puC3D7vHOJ8Y1txAEjQW_5FX8lELOA-fJ_RXq18UUMGPqGU)
 
