@@ -12,7 +12,7 @@ This will install **Thetta core** to the _node\_modules_ directory.
 You can then use **Thetta** **core** from your Solidity contracts by importing it like this:
 
 ```
-pragma solidity ^0.4.22;
+pragma solidity ^0.4.24;
 
 import "@thetta/core/contracts/DaoClient.sol";
 
