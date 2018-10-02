@@ -42,7 +42,7 @@ In order to be able to call **issueTokens** action, one needs **ISSUE\_TOKENS** 
 	function setPermissions(address _boss, address _user) public {
 		// Add some address (user or contract) to Employee group
 		daoBase.addGroupMember("Managers", _boss); 
-		daoBase.allowActionByAddress(daoBase.ISSUE_TOKENS(), "Managers");
+		daoBase.allowActionByAddress(daoBase.ISSUE_TOKENS(), _boss);
 
 		// This will allow any address that is a member of "Managers" group 
 		// to execute "issueTokens" method:
