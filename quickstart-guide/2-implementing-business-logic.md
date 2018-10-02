@@ -1,55 +1,53 @@
 # 2 - Implementing business logic
 
-Imagine you have this business logic in your DApp or Organization:
+Imagine you have an organization that order cakes from external bakery.
 
 ```text
-pragma solidity ^0.4.22;
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+contract Bakery {
+	event cakeProduced();
+	uint public cakesOrdered = 0;
+	mapping (address=>bool) public isCakeProducedForAddress;
 
-contract CakeOrderingDapp is Ownable {
-   function buySomeCake() public onlyOwner { ... }
+	function buySomeCake(address _cakeEater) public{
+		emit cakeProduced();
+		cakesOrdered = cakesOrdered + 1; // increase cakesOrdered var
+		isCakeProducedForAddress[_cakeEater] = true;
+	}
+}
+
+contract CakeOrderingDapp {
+	function buySomeCakeInternal(Bakery _bakery) internal { 
+		_bakery.buySomeCake(msg.sender);
+	}
 }
 ```
 
-Let **buySomeCake** method transfer Ether to some online bakery and order a cake. 
+Let **buySomeCakeInternal** method calls buySomeCake from this online bakery. 
 
-{% hint style="info" %}
-Currently, only owner \(initially, this is who deployed it\) of this contract can call **buySomeCake** method 
-{% endhint %}
-
-Imagine you want **CakeOrderingOrganization** to be controlled not only by yourself, but by ALL your friends. So  that is where Thetta comes in:
+Imagine you want **CakeOrderingOrganization** to be controlled not only by yourself, but by ALL your friends. So  that is where Thetta comes in. Now lets implement **CakeOrderingOrganization**, which add **isCanDo\(\)** modifier. Only addresses that have a permission \(written in daoBase\) can call **buySomeCake\(\)**:
 
 ```text
-pragma solidity ^0.4.24;
-
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import "zeppelin-solidity/contracts/token/ERC20/MintableToken.sol";
-
-import "@thetta/core/contracts/DaoClient.sol";
-import "@thetta/core/contracts/IDaoBase.sol";
-
-contract CakeOrderingDapp {
-	uint public x = 0;
-
-	constructor() {
-	}
-
-	function buySomeCakeInternal(IDaoBase _daoBase, address _tokenAddress) internal { 
-		x = 1; // write 1 to x
-		_daoBase.issueTokens(_tokenAddress, msg.sender, 100); // issue 100 ERC20 tokens for caller
-	}
-}
-
 contract CakeOrderingOrganizaion is CakeOrderingDapp, DaoClient {
-	address public tokenAddress;
 	bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
 
-	constructor(IDaoBase _daoBase, address _tokenAddress) public DaoClient(_daoBase){
-		tokenAddress = _tokenAddress;
+	constructor(Bakery _bakery, DaoBase _daoBase) public DaoClient(_daoBase){
+		bakery = _bakery;
 	}
 
 	function buySomeCake() public isCanDo(BUY_SOME_CAKE) { 
-		buySomeCakeInternal(daoBase, tokenAddress);
+		buySomeCakeInternal(bakery);
+	}
+
+	function setPermissions(DaoBase _daoBase, address _boss, address _user) public {
+		// Add some address (user or contract) to Employee group
+		_daoBase.addGroupMember("Managers", _boss); 
+
+		// This will allow any address that is a member of "Managers" group 
+		// to execute "issueTokens" method:
+		_daoBase.allowActionByAnyMemberOfGroup(BUY_SOME_CAKE, "Managers");
+		        
+		// To allow specific address to execute action without any voting:
+		_daoBase.allowActionByAddress(BUY_SOME_CAKE, _user);
 	}
 }
 
@@ -65,7 +63,7 @@ Please notice that **buySomeCakeInternal** method is marked with an _internal_ m
 
 Ok, what have we done?
 
-1. We left all busines logic in **CakeOrderingCore** contract;
+1. We left all business logic in **CakeOrderingDapp** contract;
 2. We added **CakeOrderingOrganization** contract that will controlled by your friends!
 3. We added new action **buySomeCake** and attached to it custom permission **BUY\_SOME\_CAKE;**
 
