@@ -6,8 +6,10 @@ description: (this section is still under construction)
 
 ## What is a Moneyflow?
 
-This subsystem can be utilized by any DAO. But it is completely optional. Use this subsystem to process funds, i.e. pay salaries, manage funds, etc.  
-
+This subsystem can be utilized by any DAO. But it is completely optional.   
+Use this subsystem to process funds, i.e. pay salaries, manage funds, etc.  
+  
+TODO: add good description.
 
 There are 3 types of MoneyFlow elements that you can use:
 
