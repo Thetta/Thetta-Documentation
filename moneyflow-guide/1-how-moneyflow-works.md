@@ -6,19 +6,26 @@ description: (this section is still under construction)
 
 ## What is a Moneyflow?
 
+ **Moneyflow** – system for redistributing money from sources to destinations. Moneyflow can be represented as a tree, in which one root node - source, internal nodes - always splitters, leaves - always destinations.
+
 This subsystem can be utilized by any DAO. But it is completely optional.   
-Use this subsystem to process funds, i.e. pay salaries, manage funds, etc.  
-  
-TODO: add good description.
+Moneyflow can be used as the main financial flow of a DAO, which will include receiving money from third-party sources \(customers, investors, etc\), redistribution within the organization and output to the outside \(paying salaries to employees, paying regular expenses, paying other organizations, saving money in funds\) .
 
-There are 3 types of MoneyFlow elements that you can use:
+In addition to creating a budget system for a DAO, other uses can be found for moneyflow. For example, to create a roadmap, or some other thing.
 
-1. Source - just an ordinary Ethereum account or a smart contract that is the source of the money;
-2. Splitter - has many outputs \(children\), automatically splits incoming funds;
-3. Destination - that’s where money finally arrive. Destination has no children;
-4. Table - ...
+There are 2 types of MoneyFlow elements that you can use – splitter and destination. Source is just an ordinary Ethereum account or a smart contract that is the source of the money.
+
+**Splitter** takes money and redirect it to outputs. There are two types of splitter: **top-down**, which send money to the outputs consistently, and unsorted, which send money in parallel. The difference between them appears when we deal with a relative expenses.
+
+**Destination** is ****where money finally arrive. Destination has no children, and it have many params. 
+
+Each moneyflow element represents by a separate contract, but there is a **table**, which is a destination element, and which can implement any moneyflow scheme, but in one contract. It effectively reduce gas consumption.
+
+Following diagram represent a moneyflow scheme of some DAO:
 
 ![Example of how moneyflow works](https://lh4.googleusercontent.com/MnPsHXge9Q5PzDhg6rg0YHrgMsFIsLO5ynmuI2g4WYTholpQaS5riPgzvLbqic8Ymg_Q_tNE3mA0gV_Dwd-Pr0X_hBj7pdSOpsc0zV25toUovNCn6qBgYEopY5D1PPS7kO2wTOVf)
+
+Also, each moneyflow element have a **getMinWeiNeeded\(\)** and **getTotalWeiNeed\(\)** functions. Splitters do not need anything, but if you ask them, they will ask their children, which ask their children, etc. Splitter will summarize it and get you an answer. So, only destinations have a needed amount.
 
 ### How does MoneyFlow work?
 
