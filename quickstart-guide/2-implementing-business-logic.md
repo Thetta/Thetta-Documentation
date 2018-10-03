@@ -1,33 +1,38 @@
 # 2 - Implementing business logic
 
-Imagine you have an organization that order cakes from external bakery.
+Imagine a smart contract that orders cakes from the external bakery:
 
 ```text
+// some external smart contract that does something
 contract Bakery {
 	event cakeProduced();
+	
 	uint public cakesOrdered = 0;
 	mapping (address=>bool) public isCakeProducedForAddress;
 
-	function buySomeCake(address _cakeEater) public{
-		emit cakeProduced();
-		cakesOrdered = cakesOrdered + 1; // increase cakesOrdered var
+	function buySomeCake(address _cakeEater) public {
+		cakesOrdered = cakesOrdered + 1;
 		isCakeProducedForAddress[_cakeEater] = true;
+		
+		emit cakeProduced();
 	}
 }
 
-contract CakeOrderingDapp {
-	function buySomeCakeInternal(Bakery _bakery) internal { 
+contract CakeByer {
+    function buySomeCakeInternal(Bakery _bakery) internal { 
+    	// some business logic here
 		_bakery.buySomeCake(msg.sender);
 	}
 }
 ```
 
-Let **buySomeCakeInternal** method calls buySomeCake from this online bakery. 
+What if you want **CakeByer** to be controlled not by anyone, even not by yourself \(the owner\), but by you AND some of your friends? So that is where Thetta comes in. 
 
-Imagine you want **CakeOrderingOrganization** to be controlled not only by yourself, but by ALL your friends. So  that is where Thetta comes in. Now lets implement **CakeOrderingOrganization**, which add **isCanDo\(\)** modifier. Only addresses that have a permission \(written in daoBase\) can call **buySomeCake\(\)**:
+Let's start by converting **CakeByer** to **CakeOrderingOrganization**: 
 
 ```text
-contract CakeOrderingOrganizaion is CakeOrderingDapp, DaoClient {
+contract CakeOrderingOrganizaion is CakeByer, DaoClient {
+    Bakery bakery;
 	bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
 
 	constructor(Bakery _bakery, DaoBase _daoBase) public DaoClient(_daoBase){
@@ -37,18 +42,6 @@ contract CakeOrderingOrganizaion is CakeOrderingDapp, DaoClient {
 	function buySomeCake() public isCanDo(BUY_SOME_CAKE) { 
 		buySomeCakeInternal(bakery);
 	}
-
-	function setPermissions(DaoBase _daoBase, address _boss, address _user) public {
-		// Add some address (user or contract) to Employee group
-		_daoBase.addGroupMember("Managers", _boss); 
-
-		// This will allow any address that is a member of "Managers" group 
-		// to execute "issueTokens" method:
-		_daoBase.allowActionByAnyMemberOfGroup(BUY_SOME_CAKE, "Managers");
-		        
-		// To allow specific address to execute action without any voting:
-		_daoBase.allowActionByAddress(BUY_SOME_CAKE, _user);
-	}
 }
 
 ```
@@ -57,15 +50,15 @@ contract CakeOrderingOrganizaion is CakeOrderingDapp, DaoClient {
 Please notice that **buySomeCakeInternal** method is marked with an _internal_ modifier and can be called only by **buySomeCake.**
 {% endhint %}
 
-### The contracts diagram will now look like this:
+The contract layout will now look as follows:
 
-![](../.gitbook/assets/scheme.png)
+![](../.gitbook/assets/graph%20%281%29.png)
 
 Ok, what have we done?
 
-1. We left all business logic in **CakeOrderingDapp** contract;
-2. We added **CakeOrderingOrganization** contract that will controlled by your friends!
-3. We added new action **buySomeCake** and attached to it custom permission **BUY\_SOME\_CAKE;**
+1. We left all business logic in the **CakeByer** contract;
+2. We implemented the **CakeOrderingOrganization** contract that will be controlled by you and your friends;
+3. We added new action - **buySomeCake** - and connected it with the **BUY\_SOME\_CAKE** permission.
 
-We are going to grant all actors \(i.e., users or other contracts\) permissions later \(see next chapter\).
+We are going to grant permissions to all actors \(i.e., users or other contracts\) in the next chapter.
 

@@ -2,7 +2,7 @@
 
 ### Votings
 
-Usually if you have a permission to call action \(imagine, **issueTokens\)** directly, you can call issueTokens and it will immediately mint some tokens:
+Usually if you have a permission to call an action \(imagine, **issueTokens\)** directly, you can just call issueTokens method and it will immediately mint some tokens:
 
 ```text
 // 1 - Grant myself ISSUE_TOKENS permission
@@ -20,13 +20,9 @@ bool yesICan = daoBase.isCanDoAction(msg.sender, daoBase.ISSUE_TOKENS());
 // to call this action you should have ISSUE_TOKENS permission granted
 // to your account (current msg.sender)
 daoBase.issueTokens(repToken.address, employee1, 100);
-
-// this will fail because I AM NOT an owner of the repToken
-// but daoBase is
-repToken.mint(employee1, 100);
 ```
 
-But sometimes you will want to set permission that this call will rather start voting instead of directly minting tokens.
+But sometimes, instead of directly minting tokens, you will want to start voting.
 
 ```text
 // 1 - ISSUE_TOKENS can be called with voting

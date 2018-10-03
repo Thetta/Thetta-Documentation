@@ -18,7 +18,6 @@ For example, DaoBase has **issueTokens** action that is defined like this:
 // this is the main Thetta DAO Framework contract
 // defined in "thetta/core/contracts/DaoBase.sol" file 
 contract DaoBase {
-
   // bytes32 public constant ISSUE_TOKENS = keccak256("issueTokens");
   bytes32 public constant ISSUE_TOKENS = 0xe003bf3bc29ae37598e0a6b52d6c5d94b0a53e4e52ae40c01a29cdd0e7816b71;
 
@@ -34,22 +33,22 @@ In this case we call **issueTokens** an action, and **ISSUE\_TOKENS** a permissi
 
 ### Setting permissions
 
-Thetta Permissions work like AccessControlLists in your OperatingSystems.
+Thetta permissions work like AccessControlLists in your operating system.
 
 In order to be able to call **issueTokens** action, one needs **ISSUE\_TOKENS** permission to be granted to his account. There are different options how you can set the permissions:
 
 ```
-	function setPermissions(address _boss, address _user) public {
-		// Add some address (user or contract) to Employee group
-		daoBase.addGroupMember("Managers", _boss); 
-		daoBase.allowActionByAddress(daoBase.ISSUE_TOKENS(), _boss);
-
-		// This will allow any address that is a member of "Managers" group 
-		// to execute "issueTokens" method:
-		daoBase.allowActionByAnyMemberOfGroup(BUY_SOME_CAKE, "Managers");
+	function setPermissions(address _friend1, address _friend2) public {
+		daoBase.addGroupMember("Friends", _friend1);
+		daoBase.addGroupMember("Friends", _friend2);
+		 
+		// This will allow any address that is a member of "Friends" group 
+		// to execute buySomeCake action:
+		daoBase.allowActionByAnyMemberOfGroup(BUY_SOME_CAKE, "Friends");
 		        
-		// To allow specific address to execute action without any voting:
-		daoBase.allowActionByAddress(BUY_SOME_CAKE, _user);
+		// This will allow specific address to execute action directly
+		// (can be another smart contract)
+		daoBase.allowActionByAddress(BUY_SOME_CAKE, msg.sender);
 	}
 ```
 
