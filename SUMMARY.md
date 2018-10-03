@@ -14,7 +14,7 @@
   * [3 - Actions + permission](quickstart-guide/how-permissions-work.md)
   * [4 - How votings work](quickstart-guide/how-votings-work.md)
   * [5 - Wrapping up everything](quickstart-guide/5-wrapping-up-everything.md)
-* [Moneyflow](moneyflow-guide/README.md)
+* [Moneyflow subsystem](moneyflow-guide/README.md)
   * [1 - How moneyflow works](moneyflow-guide/1-how-moneyflow-works.md)
   * [2 - Splitters](moneyflow-guide/2-splitters.md)
   * [3 - Destinations](moneyflow-guide/3-destinations.md)
@@ -23,5 +23,6 @@
     * [Example 1 - Roadmap](moneyflow-guide/examples/example-1.md)
     * [Example 2 - Budget](moneyflow-guide/examples/example-2.md)
     * [Example 3](moneyflow-guide/examples/example-3.md)
+  * [Moneyflow Guide](moneyflow-guide/moneyflow-guide-1.md)
 * [Thetta in details](thetta-in-details.md)
 
