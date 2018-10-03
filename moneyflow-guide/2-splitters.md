@@ -4,6 +4,16 @@ description: (this section is still under construction)
 
 # 2 - Splitters
 
+TODO - add description of the idea   
+  
+TODO - Splitter is a entity that receives ETHer and splits it into multiple destinations.
+
+{% hint style="info" %}
+You SHOULD NOT send more ETH than needed to the splitter! It will throw exception.
+{% endhint %}
+
+
+
 ## 1. **Top-down splitter**
 
 In a top-down splitter money are flowing from the top to bottom. That is why the order is very important.  
