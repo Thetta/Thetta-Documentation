@@ -20,8 +20,8 @@
   * [3 - Destinations](moneyflow-guide/3-destinations.md)
   * [4 - Table](moneyflow-guide/4-table.md)
   * [Examples](moneyflow-guide/examples/README.md)
-    * [Example 1](moneyflow-guide/examples/example-1.md)
-    * [Example 2](moneyflow-guide/examples/example-2.md)
+    * [Example 1 - Roadmap](moneyflow-guide/examples/example-1.md)
+    * [Example 2 - Budget](moneyflow-guide/examples/example-2.md)
     * [Example 3](moneyflow-guide/examples/example-3.md)
 * [Thetta in details](thetta-in-details.md)
 
