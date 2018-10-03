@@ -35,22 +35,21 @@ In this case we call **issueTokens** an action, and **ISSUE\_TOKENS** a permissi
 
 Thetta permissions work like AccessControlLists in your operating system.
 
-In order to be able to call **issueTokens** action, one needs **ISSUE\_TOKENS** permission to be granted to his account. There are different options how you can set the permissions:
+In order to be able to call **buySomeCakes**action, one needs **BUY\_SOME\_CAKE** permission to be granted to his account. There are different options how you can set the permissions:
 
 ```
-	function setPermissions(address _friend1, address _friend2) public {
-		daoBase.addGroupMember("Friends", _friend1);
-		daoBase.addGroupMember("Friends", _friend2);
-		 
-		// This will allow any address that is a member of "Friends" group 
-		// to execute buySomeCake action:
-		daoBase.allowActionByAnyMemberOfGroup(BUY_SOME_CAKE, "Friends");
-		        
-		// This will allow specific address to execute action directly
-		// (can be another smart contract)
-		daoBase.allowActionByAddress(BUY_SOME_CAKE, msg.sender);
-	}
+function setPermissions(address _friend1, address _friend2, address _friend3) public {
+	// Add some address (user or contract) to Friends group
+	daoBase.addGroupMember("Friends", _friend1);
+	daoBase.addGroupMember("Friends", _friend2);
+
+	// This will allow any address that is a member of "Friends" group 
+	// to execute "buySomeCake" method:
+	daoBase.allowActionByAnyMemberOfGroup(cakeOrderingOrganizaion.BUY_SOME_CAKE(), "Friends");
+
+	// To allow specific address to execute action without any voting:
+	daoBase.allowActionByAddress(cakeOrderingOrganizaion.BUY_SOME_CAKE(), _friend3);
+}
+
 ```
-
-
 
