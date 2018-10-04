@@ -2,7 +2,7 @@
 description: (this section is still under construction)
 ---
 
-# 3 - Destinations
+# 4 - Destinations
 
 Destination – an WeiReceiver element, that collect money. There are three types of destinations: funds, expenses, table \(table will be discussed in the next section\).
 
