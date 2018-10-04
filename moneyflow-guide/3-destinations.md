@@ -4,7 +4,7 @@ description: (this section is still under construction)
 
 # 4 - Destinations
 
-Destination – a WeiReceiver element, that collect money. There are three types of destinations: funds, expenses, table \(table will be discussed in the next section\).
+Destination – a WeiReceiver element, that collect money and is an endpoint of a moneyflow, i.e. do not send money further.  There are two types of destinations: funds, expenses and table.
 
 Destinations needs money, if it did not receive it yet. Function **getMinWeiNeeded\(\)** will differ from **getTotalWeiNeed\(\)** in two situations:  expense is a fund or relative, so min need is always 0, but total can be more then 0.
 

@@ -14,9 +14,9 @@ The basic algorithm for moneyflow is to request  **getMinWeiNeeded\(\)** or **ge
 
 The difference between **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** exist in cases, where we have relative expenses or fund. If moneyflow consist only absolute expenses and no funds, the behavior of this two functions will be the same.
 
-WeiReceiver have 4 inheritors – **WeiTopDownSplitter**, **WeiUnsortedSplitter**, **WeiFund**, **WeiExpense**.
+WeiReceiver have 5 inheritors – **WeiTopDownSplitter**, **WeiUnsortedSplitter**, **WeiFund**, **WeiExpense**, **MoneyflowTable**.
 
- The first two elements,  is also **Splitters**, and the last two is **Destinations**.
+ The first two elements,  is also **Splitters**, and the next two is **Destinations**, and the last one is a composition of splitters and expenses \(subclass of destinations\) in a single contract.
 
 
 
