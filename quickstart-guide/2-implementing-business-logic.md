@@ -3,29 +3,22 @@
 Imagine a smart contract that orders cakes from the external bakery:​
 
 ```text
-//-------------------------------- ./Bakery.sol
 pragma solidity ^0.4.24;
-​
-​
+​​
 contract Bakery {
-	event cakeProduced();
 	uint public cakesOrdered = 0;
 	mapping (address=>bool) public isCakeProducedForAddress;
 ​
-	function buySomeCake(address _cakeEater) public{
-		emit cakeProduced();
+	function buySomeCake(address _cakeEater) public {
 		cakesOrdered = cakesOrdered + 1; // increase cakesOrdered var
 		isCakeProducedForAddress[_cakeEater] = true;
 	}
 }
 
-//-------------------------------- ./CakeByer.sol
-pragma solidity ^0.4.24;
-import "./Bakery.sol";
-​
-​
 contract CakeByer {
 	function buySomeCakeInternal(Bakery _bakery) internal { 
+		// just an example of some business logic
+		// (external call)
 		_bakery.buySomeCake(msg.sender);
 	}
 }
@@ -36,19 +29,17 @@ What if you want **CakeByer** to be controlled not by anyone, even not by yourse
 Let's start by converting **CakeByer** to **CakeOrderingOrganization**: 
 
 ```text
-//-------------------------------- ./CakeOrderingOrganizaion.sol
 pragma solidity ^0.4.24;
 
 import "@thetta/core/contracts/DaoClient.sol";
 import "@thetta/core/contracts/DaoBase.sol";
 
-import "./CakeByer.sol";
-import "./Bakery.sol";
-
+// definitions of Bakery and CakeByer are removed for clarity (see above)
+contract Bakery { ... }
+contract CakeByer { ... }
 
 contract CakeOrderingOrganizaion is CakeByer, DaoClient {
 	bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
-	DaoBase public daoBase;
 	Bakery public bakery;
 
 	constructor(Bakery _bakery, DaoBase _daoBase) public DaoClient(_daoBase){
