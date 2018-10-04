@@ -1,6 +1,6 @@
-# Example 2 - Budget
+# Example 1 - Budget
 
-Lets implement a budget scheme from section 1. Our entry point is ****the **WeiTopDownSplitter**, that have 3 connected **WeiUnsortedSplitters**: Spends, Bonuses and Rest. While it is a top-down splitter, relative bonuses and the rest will calculates from a `inputSum – Spends`:
+For example, we have an organization with a budget scheme like in section 1. So, we have 3 employees, spends for stuff like office and internet, bonuses from the income and two funds – reserve and dividends.  Our entry point is ****the **WeiTopDownSplitter**, that have 3 connected **WeiUnsortedSplitters**: Spends, Bonuses and Rest. While it is a top-down splitter, relative bonuses and the rest will calculates from a `inputSum – Spends`:
 
 ```javascript
 WeiTopDownSplitter allOutpults = new WeiTopDownSplitter('AllOutpults');
@@ -58,7 +58,7 @@ tasks.addChild(task3);
 
 ```
 
-And, for the rest, bonuses and funds:
+And, for the rest, bonuses and relative expenses:
 
 ```javascript
 WeiRelativeExpense bonus1 = new WeiRelativeExpense(10000);
@@ -74,8 +74,29 @@ bonuses.addChild(bonus3);
 
 rest.addChild(reserveFund);
 rest.addChild(dividendsFund);
-
 ```
 
-That is all!
+Scheme is implemented. But we can add more realism by making some expenses periodic. So, if employee did not receive a salary, debt should be accumulated, and same for office:
+
+```javascript
+WeiAbsoluteExpenseWithPeriod employee1 = new WeiAbsoluteExpenseWithPeriod(10**17, 24*7, true);
+WeiAbsoluteExpenseWithPeriod employee2 = new WeiAbsoluteExpenseWithPeriod(15**17, 24*7, true);
+WeiAbsoluteExpenseWithPeriod employee3 = new WeiAbsoluteExpenseWithPeriod(8**17, 24*7, true);
+
+WeiAbsoluteExpense office = new WeiAbsoluteExpense(5**17, 24*7, true);
+```
+
+But internet expense is not accumulating:
+
+```javascript
+WeiAbsoluteExpense internet = new WeiAbsoluteExpense(3**17);
+```
+
+For bonuses we will set a month period and with not accumulated debt:
+
+```javascript
+WeiRelativeExpenseWithPeriod bonus1 = new WeiRelativeExpense(10000, 24*30, false);
+WeiRelativeExpenseWithPeriod bonus2 = new WeiRelativeExpense(10000, 24*30, false);
+WeiRelativeExpenseWithPeriod bonus3 = new WeiRelativeExpense(20000, 24*30, false);
+```
 
