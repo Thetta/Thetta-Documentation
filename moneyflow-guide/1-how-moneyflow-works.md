@@ -25,6 +25,8 @@ Following diagram represent a moneyflow scheme of some DAO:
 
 ![Example of how moneyflow works](https://lh4.googleusercontent.com/MnPsHXge9Q5PzDhg6rg0YHrgMsFIsLO5ynmuI2g4WYTholpQaS5riPgzvLbqic8Ymg_Q_tNE3mA0gV_Dwd-Pr0X_hBj7pdSOpsc0zV25toUovNCn6qBgYEopY5D1PPS7kO2wTOVf)
 
+The basic algorithm for moneyflow is to request  **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** from moneyflow entry point with a specified flow amount, and then send money by  **processFunds\(\)** function with am amount you get from **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)**.
+
 ### How does MoneyFlow work?
 
 1. Usually money flow from the Top to the Down.

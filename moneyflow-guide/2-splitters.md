@@ -14,8 +14,6 @@ You can **addChild\(\)** to splitter, **getChild\(\)** info or **getChildrenCoun
 
 Splitter, as weiReceiver, will revert, if you send money directly, so use payable **processFunds\(\)** function instead. It is a universal function to transfer money between moneyflow elements.
 
-The basic algorithm for moneyflow is to request  **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** from moneyflow entry point with a specified flow amount, and then send money by  **processFunds\(\)** function with am amount you get from **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)**.
-
 The difference between **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** exist in cases, where we have relative expenses or fund. If moneyflow consist only absolute expenses and no funds, the behavior of this two functions will be the same.
 
 {% hint style="info" %}
