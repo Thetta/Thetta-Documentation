@@ -44,7 +44,6 @@ contract CakeOrderingOrganizaion is CakeByer, DaoClient {
 
 	constructor(Bakery _bakery, DaoBase _daoBase) public DaoClient(_daoBase){
 		bakery = _bakery;
-		daoBase = _daoBase;
 	}
 
 	function buySomeCake() public isCanDo(BUY_SOME_CAKE) {

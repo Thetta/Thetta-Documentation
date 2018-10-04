@@ -4,9 +4,17 @@ description: (this section is still under construction)
 
 # 2 - Splitters
 
-TODO - add description of the idea   
-  
-TODO - Splitter is a entity that receives ETHer and splits it into multiple destinations.
+Splitter takes is an entity that receives ETHer and splits it into multiple destinations. There are two types of splitter: top-down, which send money to the outputs consistently, and unsorted, which send money in parallel. The difference between them appears when we deal with a relative expenses.
+
+Splitter, as weiReceiver, have a **getMinWeiNeeded\(\)** and **getTotalWeiNeed\(\)** functions. Splitters do not need anything, but if you request them how much they need, they will request their children, which request their children, etc. Eventually, we will have a list of needs of destinations \(because only destination can be in the end of each brach\). Splitter will summarize it and get you an answer. So, only destinations have a needed amount. There is another one relative method – **isNeedsMoney\(\)**, which response true or false.
+
+Splitter can be **open\(\)** or **close\(\)**. So, in opened state splitter works as it should, but in closed state it ignore children need and do not accept money.
+
+You can **addChild\(\)** to splitter, **getChild\(\)** info or **getChildrenCount\(\)**.
+
+Splitter, as weiReceiver, will revert, if you send money directly, so use payable **processFunds\(\)** function instead. It is a universal function to transfer money between moneyflow elements.
+
+The basic algorithm for moneyflow is to request  **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** from moneyflow entry point \(it is a splitter also\) and send money with a  **processFunds\(\)** function.
 
 {% hint style="info" %}
 You SHOULD NOT send more ETH than needed to the splitter! It will throw exception.
@@ -16,7 +24,7 @@ You SHOULD NOT send more ETH than needed to the splitter! It will throw exceptio
 
 ## 1. **Top-down splitter**
 
-In a top-down splitter money are flowing from the top to bottom. That is why the order is very important.  
+In a top-down splitter money are flowing from the top to bottom. That is why the order is very important, but if you have only absolute expenses, connected to splitter, there is no difference.   
 ****
 
 ![](https://lh3.googleusercontent.com/hQoFzWjyGofSjlBVOBXE6rI6-ak8yZEVJ9JFGyU9oIVPDUl8XENlD3qzjCmG4l0Pu-UJisEiPoBvbxgk2d2EiblKbVZrEgOJFNUWwiD5c0_kO4b-k8KIWiGn024eqt7TJZFKx3qn)
