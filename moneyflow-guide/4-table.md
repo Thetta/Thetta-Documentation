@@ -16,5 +16,21 @@ As for Splitter, you can open/close MoneyflowTable elements with **openElement\(
 
 MoneyflowTable is distinguished from Destination by the fact that it have **withdrawFundsFromElement\(\)** instead of flush\(\)/flushTo\(\).
 
+{% code-tabs %}
+{% code-tabs-item title="Moneyflow table example.sol" %}
+```javascript
+MoneyflowTable moneyflowTable = new MoneyflowTable();
 
+moneyflowTable.addChild(SpendsId, SalariesId);
+moneyflowTable.addChild(SalariesId, Employee1Id);
+moneyflowTable.addChild(SalariesId, Employee2Id);
+moneyflowTable.addChild(SalariesId, Employee3Id);
+
+moneyflowTable.addChild(SpendsId, SalariesId);
+moneyflowTable.addChild(SalariesId, Employee1Id);
+moneyflowTable.addChild(SalariesId, Employee2Id);
+moneyflowTable.addChild(SalariesId, Employee3Id);
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 

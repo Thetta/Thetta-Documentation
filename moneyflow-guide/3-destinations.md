@@ -22,7 +22,16 @@ Fund – destination, that can accept any amount, until cap if reached \(if cap 
 
 TODO - add pic
 
-TODO - add code \(same as on pic\)
+{% code-tabs %}
+{% code-tabs-item title="WeiFund example.sol" %}
+```javascript
+// contract WeiFund is IWeiReceiver, IDestination, Ownable {}
+// constructor(uint _neededWei, bool _isPeriodic, bool _isAccumulateDebt, uint _periodHours) public {
+WeiRelativeExpenseWithPeriod reserveFund = new WeiRelativeExpenseWithPeriod(150000, 0, false);
+WeiRelativeExpenseWithPeriod dividendsFund = new WeiRelativeExpenseWithPeriod(250000, 0, false);
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 ## 2. Expenses
 
@@ -48,5 +57,15 @@ Each of them have a predefined values, such as WeiAbsoluteExpense have PartsPerM
 
 TODO - add pic
 
-TODO - add code \(same as on pic\)
+{% code-tabs %}
+{% code-tabs-item title="WeiExpense example.sol" %}
+```javascript
+WeiAbsoluteExpense office = new WeiAbsoluteExpense(5**17);
+WeiRelativeExpense bonus1 = new WeiRelativeExpense(10000);
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+
 
