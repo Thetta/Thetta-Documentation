@@ -13,7 +13,9 @@ Moneyflow can be used as the main financial flow of a DAO, which will include re
 
 In addition to creating a budget system for a DAO, other uses can be found for moneyflow. For example, to create a roadmap, or some other thing.
 
-Every moneyflow element is a **weiReceiver**. There is two types of weiReceiver, that you can use – **splitter** and **destination**. Source is just an ordinary Ethereum account or a smart contract that is the source of the money.
+Each moneyflow element is a **weiReceiver**. There is two types of weiReceiver, that you can use – **splitter** and **destination**. Source is just an ordinary Ethereum account or a smart contract that is the source of the money.
+
+Each moneyflow element can be an entry point.
 
 **Splitter** takes money and redirect it to outputs. 
 
