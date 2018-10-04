@@ -6,15 +6,11 @@ description: (this section is still under construction)
 
 Splitter takes is an entity that receives ETHer and splits it into multiple destinations. There are two types of splitter: top-down, which send money to the outputs consistently, and unsorted, which send money in parallel. The difference between them appears when we deal with a relative expenses.
 
-Splitter, as weiReceiver, have a **getMinWeiNeeded\(\)** and **getTotalWeiNeed\(\)** functions. Splitters do not need anything, but if you request them how much they need, they will request their children, which request their children, etc. Eventually, we will have a list of needs of destinations \(because only destination can be in the end of each brach\). Splitter will summarize it and get you an answer. So, only destinations have a needed amount. There is another one method – **isNeedsMoney\(\)**, which response true or false.
+Splitters do not need anything, but if you request them how much they need, they will request their children, which request their children, etc. Eventually, we will have a list of needs of destinations \(because only destination can be in the end of each brach\). Splitter will summarize it and get you an answer. So, only destinations have a needed amount.
 
 Splitter can be **open\(\)** or **close\(\)**. So, in opened state splitter works as it should, but in closed state it ignore children need and do not accept money.
 
 You can **addChild\(\)** to splitter, **getChild\(\)** info or **getChildrenCount\(\)**.
-
-Splitter, as weiReceiver, will revert, if you send money directly, so use payable **processFunds\(\)** function instead. It is a universal function to transfer money between moneyflow elements.
-
-The difference between **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** exist in cases, where we have relative expenses or fund. If moneyflow consist only absolute expenses and no funds, the behavior of this two functions will be the same.
 
 {% hint style="info" %}
 You SHOULD NOT send more ETH than needed to the splitter! It will throw exception.
