@@ -28,10 +28,10 @@ Unlike absolute expense, fund will not throw an exception, if you send less mone
 
 ### Fund types
 
-1. **Capped** or **Uncapped** Uncapped collects any amount of funds Capped collects funds until some amount is reached.
-2. **One-time only** or **Periodic** TODO
-3. **Accumulate debt** or not TODO
-4. **Period** _\(in hours\)_ TODO ****
+1. OneTimeFund -   collects 0 to cap;  if collected amount is equals to the cap -&gt; stop collecting more.   
+2. Periodic
+   1. PeriodicFundDoNotAccumulateDebt  
+   2. PeriodicFundAccumulateDebt 
 
 TODO - add pic
 
@@ -59,7 +59,9 @@ There is a WeiExpense basic class with a following parameters:
 4. **Period** _\(in hours\)_ ****Parameter for periodic expenses. Expense will not need amount, if in current period amount is received, and will need, if not. If period set to 0, this expense will need money always. For example, it can be useful to aggregate fee from every transaction \(absolute or relative periodic expense with 0\).
 5. \*\*\*\*
 
-As a result, moneyflow subsystem has different types that you should use:
+### Expenses Type
+
+As a result, moneyflow subsystem has different built-in expense types that you can use:
 
 1. WeiAbsoluteExpense
 2. WeiAbsoluteExpenseWithPeriod
