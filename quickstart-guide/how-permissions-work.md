@@ -14,7 +14,7 @@ There are many built-in actions provided by **Thetta core**:
 
 For example, DaoBase has **issueTokens** action that is defined like this:
 
-```text
+```javascript
 // this is the main Thetta DAO Framework contract
 // defined in "thetta/core/contracts/DaoBase.sol" file 
 contract DaoBase {
@@ -37,7 +37,7 @@ Thetta permissions work like AccessControlLists in your operating system.
 
 In order to be able to call **buySomeCakes**action, one needs **BUY\_SOME\_CAKE** permission to be granted to his account. There are different options how you can set the permissions:
 
-```
+```javascript
 function setPermissions(address _friend1, address _friend2, address _friend3) public {
 	// Add some address (user or contract) to Friends group
 	daoBase.addGroupMember("Friends", _friend1);

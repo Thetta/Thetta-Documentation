@@ -2,7 +2,7 @@
 
 Imagine a smart contract that orders cakes from the external bakery:​
 
-```text
+```javascript
 pragma solidity ^0.4.24;
 ​​
 contract Bakery {
@@ -28,7 +28,7 @@ What if you want **CakeByer** to be controlled not by anyone, even not by yourse
 
 Let's start by converting **CakeByer** to **CakeOrderingOrganization**: 
 
-```text
+```javascript
 pragma solidity ^0.4.24;
 
 import "@thetta/core/contracts/DaoClient.sol";

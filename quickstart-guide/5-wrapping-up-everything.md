@@ -2,7 +2,7 @@
 
 Ok, last time our code looked like this:
 
-```text
+```javascript
 pragma solidity ^0.4.24;
 
 import "@thetta/core/contracts/DaoClient.sol";
@@ -42,7 +42,7 @@ contract CakeOrderingOrganizaion is CakeByer, DaoClient {
 
 Let's grant needed permissions:
 
-```text
+```javascript
 pragma solidity ^0.4.24;
 
 import "@thetta/core/contracts/DaoBase.sol";

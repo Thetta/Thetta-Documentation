@@ -4,7 +4,7 @@
 
 Usually if you have a permission to call an action \(imagine, **issueTokens\)** directly, you can just call issueTokens method and it will immediately mint some tokens:
 
-```text
+```javascript
 // 1 - Grant myself ISSUE_TOKENS permission
 // i should be the owner of daoBase OR i should have MANAGE_GROUPS permission
 // to call addGroupMember and allowActionByAnyMemberOfGroup
@@ -24,7 +24,7 @@ daoBase.issueTokens(repToken.address, employee1, 100);
 
 But sometimes, instead of directly minting tokens, you will want to start voting.
 
-```text
+```javascript
 // 1 - ISSUE_TOKENS can be called with voting
 daoBase.allowActionByVoting(dao.ISSUE_TOKENS(), token.address);
 
