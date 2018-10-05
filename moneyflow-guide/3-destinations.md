@@ -28,12 +28,14 @@ Unlike absolute expense, fund will not throw an exception, if you send less mone
 
 ### Fund types
 
-1. OneTimeFund -   collects 0 to cap;  if collected amount is equals to the cap -&gt; stop collecting more.   
+1. OneTimeFund -  collects 0 to cap;  if collected amount is equals to the cap -&gt; stop collecting more.   
 2. Periodic
    1. PeriodicFundDoNotAccumulateDebt  
    2. PeriodicFundAccumulateDebt 
 
-TODO - add pic
+TODO - add pic  
+  
+TODO:
 
 {% code-tabs %}
 {% code-tabs-item title="WeiFund example.sol" %}
@@ -53,20 +55,22 @@ Current flow make sense only for relative expense – an expense, that calculate
 
 There is a WeiExpense basic class with a following parameters:
 
-1. **Absolute** or **Relative** Absolute amount is set in ETH \(e.g., 1.2 ETH\), relative is set in parts per million \(e.g., 10000 is 1%\).
-2. **One-time only** or **Periodic** One-time receives funds only once, periodic can receive funds many times but only once during the specified interval.
-3. **Accumulate debt** or not For example, we have periodic absolute expense with 1 ETH every day. How much element need, if there is no payment in the last three days?  If debt is accumulated, the answer is 3, else is 1. So, it make sense only for periodic expenses.
-4. **Period** _\(in hours\)_ ****Parameter for periodic expenses. Expense will not need amount, if in current period amount is received, and will need, if not. If period set to 0, this expense will need money always. For example, it can be useful to aggregate fee from every transaction \(absolute or relative periodic expense with 0\).
-5. \*\*\*\*
-
 ### Expenses Type
 
 As a result, moneyflow subsystem has different built-in expense types that you can use:
 
-1. WeiAbsoluteExpense
-2. WeiAbsoluteExpenseWithPeriod
-3. WeiRelativeExpense
-4. WeiRelativeExpenseWithPeriod
+1. **WeiAbsoluteExpense**
+   1. neededWei - TODO
+2. **WeiAbsoluteExpenseWithPeriod**
+   1. neededWei - TODO
+   2. period - TODO
+   3. isAccumulateDebt - TODO
+3. **WeiRelativeExpense**
+   1. partsPerMillion - TODO
+4. **WeiRelativeExpenseWithPeriod**
+   1. partsPerMillion - TODO
+   2. period
+   3. isAccumulateDebt
 
 TODO - add pic
 
@@ -79,6 +83,8 @@ WeiRelativeExpense bonus1 = new WeiRelativeExpense(10000);
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+TODO: code
 
 
 
