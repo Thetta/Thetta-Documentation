@@ -6,21 +6,21 @@ description: (this section is still under construction)
 
 Destination – is a terminal **WeiReceiver** element, i.e. does not send money further. There are three types of destinations: 
 
-* WeiFund
-* WeiExpense
-* MoneyflowTable
+* **WeiFund**
+* **WeiExpense**
+* **MoneyflowTable**
 
-Each destination has **flush\(\)** and **flushTo\(\)** functions, that will send collected funds to the owner or any address respectively.
+Each destination has _flush\(\)_ and _flushTo\(\)_ ****functions, that will send collected funds to the owner or any address respectively.
 
-## 1. Fund
+## 1. WeiFund
 
-Fund – is a destination, that can accept any amount, until cap if reached \(if cap is set\). 
+**WeiFund** – is a destination, that can accept any amount, until cap if reached \(if cap is set\). 
 
 {% hint style="info" %}
 Fund can not be relative.
 {% endhint %}
 
-\(TODO\) You can use it like a normal fund, but there are some special cases: fund can be used as buffer between customers payments and the main money flow of an organization, or you can collect additional funds, that flows into a moneyflow.
+\(TODO\) You can use it as regular fund, but there are some special cases: fund can be used as buffer between customers payments and the main money flow of an organization, or you can collect additional funds, that flows into a moneyflow.
 
 {% hint style="info" %}
 Unlike absolute expense, fund will not throw an exception, if you send less money than is needed
@@ -28,8 +28,10 @@ Unlike absolute expense, fund will not throw an exception, if you send less mone
 
 ### Fund types
 
-1. OneTimeFund -  collects 0 to cap;  if collected amount is equals to the cap -&gt; stop collecting more.   
-2. Periodic
+1. **OneTimeFund**
+   1. collects 0 to cap; 
+   2. if collected amount is equals to the cap -&gt; stop collecting more.  
+2. **PeriodicFund**
    1. PeriodicFundDoNotAccumulateDebt  
    2. PeriodicFundAccumulateDebt 
 
@@ -48,12 +50,10 @@ TODO:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-## 2. Expense
+## 2. WeiExpense
 
-Expense – destination, that accept only **getTotalWeiNeeded\(currentFlow\)** amount.    
-Current flow make sense only for relative expense – an expense, that calculate how much it need from a current flow \(e.g., relative expense needs 2%, so if current flow is 100 ETH, it will need a 2 ETH\). Relative expense **getMinWeiNeeded\(\)** is always 0. Absolute expense **getMinWeiNeeded\(\)==getTotalWeiNeeded\(\)** and do not depends on currentFlow**.** 
-
-There is a WeiExpense basic class with a following parameters:
+**WeiExpense** – destination, that accept only _getTotalWeiNeeded\(currentFlow\)_ ****amount.    
+Current flow make sense only for relative expense – an expense, that calculate how much it need from a current flow \(e.g., relative expense needs 2%, so if current flow is 100 ETH, it will need a 2 ETH\). Relative expense _getMinWeiNeeded\(\)_ ****is always 0. Absolute expense _getMinWeiNeeded\(\)==getTotalWeiNeeded\(\)_ and do not depends on currentFlow**.** 
 
 ### Expenses Type
 
@@ -81,7 +81,6 @@ TODO: code
 ```javascript
 WeiAbsoluteExpense office = new WeiAbsoluteExpense(5**17);
 WeiRelativeExpense bonus1 = new WeiRelativeExpense(10000);
-
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}

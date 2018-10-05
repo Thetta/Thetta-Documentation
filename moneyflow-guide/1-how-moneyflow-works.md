@@ -32,7 +32,7 @@ Usually, each moneyflow element is a separate smart contract, but you can use **
 
 ### Absolute vs Relative elements
 
-TODO
+Expense can be absolute or relative. Relative means that this element will take a fixed part of the total money flow, for example – 2%. Absolute means that this element will take a strictly fixed amount from a money flow, for example – 5 ETH.
 
 ### How to group elements?
 
@@ -43,23 +43,28 @@ Also, this is absolutely legitimate, it is highly recommended to avoid later app
 
 ### Code Example
 
-```text
-WeiRelativeExpense bonus1 = new WeiRelativeExpense(10000);
-WeiRelativeExpense bonus2 = new WeiRelativeExpense(10000);
-WeiRelativeExpense bonus3 = new WeiRelativeExpense(20000);
-
+```javascript
+WeiTopDownSplitter root = new WeiTopDownSplitter('Root');
+WeiUnsortedSplitter spends = new WeiUnsortedSplitter('Spends');
+WeiUnsortedSplitter salaries = new WeiUnsortedSplitter('Salaries');
+WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(1*eth);
+WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(2*eth);
+WeiUnsortedSplitter other = new WeiUnsortedSplitter('Other');
+WeiAbsoluteExpense office = new WeiAbsoluteExpense(1*eth);
 WeiUnsortedSplitter rest = new WeiUnsortedSplitter('Rest');
 WeiRelativeExpenseWithPeriod reserveFund = new WeiRelativeExpenseWithPeriod(250000, 0, false);
 WeiRelativeExpenseWithPeriod dividendsFund = new WeiRelativeExpenseWithPeriod(750000, 0, false);
-​
-bonuses.addChild(bonus1);
-bonuses.addChild(bonus2);
-bonuses.addChild(bonus3);
-​
+
+// CONNECTIONS
+root.addChild(spends);
+spends.addChild(salaries);
+salaries.addChild(employee1);
+salaries.addChild(employee2);
+spends.addChild(other);
+other.addChild(office);
+allOutpults.addChild(rest);
 rest.addChild(reserveFund);
 rest.addChild(dividendsFund);
-
-// TODO
 ```
 
 
