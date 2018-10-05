@@ -40,8 +40,8 @@ TODO - add pic
 ```javascript
 // contract WeiFund is IWeiReceiver, IDestination, Ownable {}
 // constructor(uint _neededWei, bool _isPeriodic, bool _isAccumulateDebt, uint _periodHours) public {
-WeiRelativeExpenseWithPeriod reserveFund = new WeiRelativeExpenseWithPeriod(150000, 0, false);
-WeiRelativeExpenseWithPeriod dividendsFund = new WeiRelativeExpenseWithPeriod(250000, 0, false);
+
+
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
