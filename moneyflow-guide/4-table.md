@@ -21,15 +21,17 @@ MoneyflowTable is distinguished from Destination by the fact that it have **with
 ```javascript
 MoneyflowTable moneyflowTable = new MoneyflowTable();
 
-moneyflowTable.addChild(SpendsId, SalariesId);
-moneyflowTable.addChild(SalariesId, Employee1Id);
-moneyflowTable.addChild(SalariesId, Employee2Id);
-moneyflowTable.addChild(SalariesId, Employee3Id);
+uint spendsId = moneyflowTable.addUnsortedSplitter();
+uint salariesId = moneyflowTable.addUnsortedSplitter();
+uint employee1Id = moneyflowTable.addAbsoluteExpense(10*1**17, false, false, 0, outputForEmployee1);
+uint employee2Id = moneyflowTable.addAbsoluteExpense(15*1**17, false, false, 0, outputForEmployee2);
+uint employee3Id = moneyflowTable.addAbsoluteExpense(8*1**17, false, false, 0, outputForEmployee3);
 
-moneyflowTable.addChild(SpendsId, SalariesId);
-moneyflowTable.addChild(SalariesId, Employee1Id);
-moneyflowTable.addChild(SalariesId, Employee2Id);
-moneyflowTable.addChild(SalariesId, Employee3Id);
+moneyflowTable.addChild(spendsId, salariesId);
+moneyflowTable.addChild(salariesId, employee1Id);
+moneyflowTable.addChild(salariesId, employee2Id);
+moneyflowTable.addChild(salariesId, employee3Id);
+
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
