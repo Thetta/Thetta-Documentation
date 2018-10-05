@@ -20,15 +20,19 @@ Following diagram represents a typical moneyflow scheme of some organization:
 
 You can think of moneyflow scheme as a tree, where each node is an instance of **WeiReceiver** smart contract. 
 
-An account or a smart contract that is a source of money is called "**a source**". Source is sending \(pushing\) ETH to the root node and is not a part of the scheme.  
+An account or a smart contract that is a source of money is called "a source". Source is sending \(pushing\) ETH to the root node and is not a part of the scheme.  
   
-The tree leaves are called "**destinations**". Destination ****is ****where ETH finally arrives, that's why it has no children.   
+The tree leaves are called "destinations". Destination ****is ****where ETH finally arrives, that's why it has no children.   
   
-ETH are flowing from the source to destinations and are processed by internal elements that are called "**splitters**". Splitter never stores ETH, instead it redistributes ETH to its outputs. 
+ETH are flowing from the source to destinations and are processed by internal elements that are called "splitters". Splitter never stores ETH, instead it redistributes ETH to its outputs. 
 
 {% hint style="info" %}
-Usually, each moneyflow element is a separate smart contract, but you can use **Table** which can implement any moneyflow scheme, but in single contract. It effectively reduces gas consumption.
+Usually, each moneyflow element is a separate smart contract, but you can use **MoneyflowTable** which can implement any moneyflow scheme, but in single contract. It effectively reduces gas consumption.
 {% endhint %}
+
+### Absolute vs Relative elements
+
+TODO
 
 ### How to group elements?
 

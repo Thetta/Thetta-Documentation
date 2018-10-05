@@ -4,22 +4,34 @@ description: (this section is still under construction)
 
 # 3 - Destinations
 
-Destination – a terminal WeiReceiver element, i.e. does not send money further. There are three types of destinations: funds, expenses and table.
+Destination – is a terminal **WeiReceiver** element, i.e. does not send money further. There are three types of destinations: 
 
-Each destination has **flush\(\)** and **flushTo\(\)** functions, that will flush collected funds to owner or any address respectively.
+* WeiFund
+* WeiExpense
+* MoneyflowTable
 
-## 1. Funds
+Each destination has **flush\(\)** and **flushTo\(\)** functions, that will send collected funds to the owner or any address respectively.
 
-Fund – is a destination, that can accept any amount, until cap if reached \(if cap is set\).   
-So, unlike absolute expense, it will not revert, if you send less money.  
-  
-You can use it like a normal fund, but there are some special cases: fund can be used as buffer between customers payments and the main money flow of an organization, or you can collect additional funds, that flows into a moneyflow.
+## 1. Fund
 
-#### Parameters
+Fund – is a destination, that can accept any amount, until cap if reached \(if cap is set\). 
+
+{% hint style="info" %}
+Fund can not be relative.
+{% endhint %}
+
+\(TODO\) You can use it like a normal fund, but there are some special cases: fund can be used as buffer between customers payments and the main money flow of an organization, or you can collect additional funds, that flows into a moneyflow.
+
+{% hint style="info" %}
+Unlike absolute expense, fund will not throw an exception, if you send less money than is needed
+{% endhint %}
+
+### Fund types
 
 1. **Capped** or **Uncapped** Uncapped collects any amount of funds Capped collects funds until some amount is reached.
-2. **Pull model** or **Push model** _\(not implemented\)_ Currently all Thetta funds have “pull model”, i.e. when you need to call some method to get money out of it.
-3. **Untokenized** or **Tokenized** _\(not implemented\)_ Currently all Thetta funds are “untokenized”. Tokenized fund means that you need tokens in order to pull money out of it \(rewards subsystem\).
+2. **One-time only** or **Periodic** TODO
+3. **Accumulate debt** or not TODO
+4. **Period** _\(in hours\)_ TODO ****
 
 TODO - add pic
 
@@ -34,9 +46,10 @@ WeiRelativeExpenseWithPeriod dividendsFund = new WeiRelativeExpenseWithPeriod(25
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-## 2. Expenses
+## 2. Expense
 
-Expense – destination, that accept only **getTotalWeiNeeded\(currentFlow\)** amount.  Current flow make sense only for relative expense – an expense, that calculate how much it need from a current flow \(e.g., relative expense needs 2%, so if current flow is 100 ETH, it will need a 2 ETH\). Relative expense **getMinWeiNeeded\(\)** is always 0. Absolute expense **getMinWeiNeeded\(\)==getTotalWeiNeeded\(\)** and do not depends on currentFlow**.** 
+Expense – destination, that accept only **getTotalWeiNeeded\(currentFlow\)** amount.    
+Current flow make sense only for relative expense – an expense, that calculate how much it need from a current flow \(e.g., relative expense needs 2%, so if current flow is 100 ETH, it will need a 2 ETH\). Relative expense **getMinWeiNeeded\(\)** is always 0. Absolute expense **getMinWeiNeeded\(\)==getTotalWeiNeeded\(\)** and do not depends on currentFlow**.** 
 
 There is a WeiExpense basic class with a following parameters:
 
@@ -44,17 +57,14 @@ There is a WeiExpense basic class with a following parameters:
 2. **One-time only** or **Periodic** One-time receives funds only once, periodic can receive funds many times but only once during the specified interval.
 3. **Accumulate debt** or not For example, we have periodic absolute expense with 1 ETH every day. How much element need, if there is no payment in the last three days?  If debt is accumulated, the answer is 3, else is 1. So, it make sense only for periodic expenses.
 4. **Period** _\(in hours\)_ ****Parameter for periodic expenses. Expense will not need amount, if in current period amount is received, and will need, if not. If period set to 0, this expense will need money always. For example, it can be useful to aggregate fee from every transaction \(absolute or relative periodic expense with 0\).
-5. **NeededWei** Parameter for absolute expense. 
-6. **PartsPerMillion** Parameter for relative expense.
+5. \*\*\*\*
 
-But there are some inherited from WeiExpense classes, such as:
+As a result, moneyflow subsystem has different types that you should use:
 
 1. WeiAbsoluteExpense
 2. WeiAbsoluteExpenseWithPeriod
 3. WeiRelativeExpense
 4. WeiRelativeExpenseWithPeriod
-
-Each of them have a predefined values, such as WeiAbsoluteExpense have PartsPerMillion==0, Period==0,  isPeriodic==false, isAccumulateDebt==false. So, you should use one of this classes instead of WeiExpense.
 
 TODO - add pic
 
