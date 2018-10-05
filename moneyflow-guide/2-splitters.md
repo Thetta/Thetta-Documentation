@@ -31,9 +31,9 @@ In a top-down splitter money are flowing from the top to bottom. That is why the
 WeiTopDownSplitter allOutpults = new WeiTopDownSplitter('AllOutpults');
 WeiUnsortedSplitter spends = new WeiUnsortedSplitter('Spends');
 WeiUnsortedSplitter salaries = new WeiUnsortedSplitter('Salaries');
-WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(10**17);
-WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(15**17);
-WeiAbsoluteExpense employee3 = new WeiAbsoluteExpense(8**17);
+WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(10*eth);
+WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(15*eth);
+WeiAbsoluteExpense employee3 = new WeiAbsoluteExpense(8*eth);
 
 // CONNECTIONS
 allOutpults.addChild(spends);
@@ -54,9 +54,9 @@ In unsorted splitter there is no difference how children are ordered, i.e. you c
 {% code-tabs-item title="WeiUnsortedSplitter example 1.sol" %}
 ```javascript
 WeiUnsortedSplitter salaries = new WeiUnsortedSplitter('Salaries');
-WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(1**18);
-WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(2**18);
-WeiAbsoluteExpense employee3 = new WeiAbsoluteExpense(3**18);
+WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(1*eth);
+WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(2*eth);
+WeiAbsoluteExpense employee3 = new WeiAbsoluteExpense(3*eth);
 ​
 salaries.addChild(employee1);
 salaries.addChild(employee2);

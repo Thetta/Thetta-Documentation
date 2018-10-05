@@ -23,9 +23,9 @@ MoneyflowTable moneyflowTable = new MoneyflowTable();
 
 uint spendsId = moneyflowTable.addUnsortedSplitter();
 uint salariesId = moneyflowTable.addUnsortedSplitter();
-uint employee1Id = moneyflowTable.addAbsoluteExpense(10*1**17, false, false, 0, outputForEmployee1);
-uint employee2Id = moneyflowTable.addAbsoluteExpense(15*1**17, false, false, 0, outputForEmployee2);
-uint employee3Id = moneyflowTable.addAbsoluteExpense(8*1**17, false, false, 0, outputForEmployee3);
+uint employee1Id = moneyflowTable.addAbsoluteExpense(10*eth, false, false, 0, outputForEmployee1);
+uint employee2Id = moneyflowTable.addAbsoluteExpense(15*eth, false, false, 0, outputForEmployee2);
+uint employee3Id = moneyflowTable.addAbsoluteExpense(8*eth, false, false, 0, outputForEmployee3);
 
 moneyflowTable.addChild(spendsId, salariesId);
 moneyflowTable.addChild(salariesId, employee1Id);
