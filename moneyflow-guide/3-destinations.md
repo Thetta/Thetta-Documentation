@@ -69,10 +69,12 @@ As a result, moneyflow subsystem has different built-in expense types that you c
    1. partsPerMillion - TODO
 4. **WeiRelativeExpenseWithPeriod**
    1. partsPerMillion - TODO
-   2. period
-   3. isAccumulateDebt
+   2. period - TODO
+   3. isAccumulateDebt - TODO
 
 TODO - add pic
+
+TODO: code
 
 {% code-tabs %}
 {% code-tabs-item title="WeiExpense example.sol" %}
@@ -84,7 +86,7 @@ WeiRelativeExpense bonus1 = new WeiRelativeExpense(10000);
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-TODO: code
+
 
 
 
