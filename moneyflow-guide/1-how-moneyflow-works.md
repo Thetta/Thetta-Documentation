@@ -41,3 +41,26 @@ TODO
 
 Also, this is absolutely legitimate, it is highly recommended to avoid later approach.
 
+### Code Example
+
+```text
+WeiRelativeExpense bonus1 = new WeiRelativeExpense(10000);
+WeiRelativeExpense bonus2 = new WeiRelativeExpense(10000);
+WeiRelativeExpense bonus3 = new WeiRelativeExpense(20000);
+
+WeiUnsortedSplitter rest = new WeiUnsortedSplitter('Rest');
+WeiRelativeExpenseWithPeriod reserveFund = new WeiRelativeExpenseWithPeriod(250000, 0, false);
+WeiRelativeExpenseWithPeriod dividendsFund = new WeiRelativeExpenseWithPeriod(750000, 0, false);
+​
+bonuses.addChild(bonus1);
+bonuses.addChild(bonus2);
+bonuses.addChild(bonus3);
+​
+rest.addChild(reserveFund);
+rest.addChild(dividendsFund);
+
+// TODO
+```
+
+
+
