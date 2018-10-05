@@ -2,17 +2,18 @@
 description: (this section is still under construction)
 ---
 
-# 4 - Destinations
+# 3 - Destinations
 
-Destination – a WeiReceiver element, that collect money and is an endpoint of a moneyflow, i.e. do not send money further.  There are two types of destinations: funds, expenses and table.
+Destination – a terminal WeiReceiver element, i.e. does not send money further. There are three types of destinations: funds, expenses and table.
 
-Destinations needs money, if it did not receive it yet. Function **getMinWeiNeeded\(\)** will differ from **getTotalWeiNeed\(\)** in two situations:  expense is a fund or relative, so min need is always 0, but total can be more then 0.
-
-Each destination have **flush\(\)** and **flushTo\(\)** functions, that will flush collected funds to owner or any address respectively.
+Each destination has **flush\(\)** and **flushTo\(\)** functions, that will flush collected funds to owner or any address respectively.
 
 ## 1. Funds
 
-Fund – destination, that can accept any amount, until cap if reached \(if cap exist\). So, unlike absolute expense, it will not revert, if you send less money, then it totally need, and, unlike relative expense, total amount do not relative from a flow amount. You can use it like a normal fund, but there are some special cases: fund can be used as buffer between customers payments and the main money flow of an organization, or you can collect additional funds, that comes to a moneyflow.
+Fund – is a destination, that can accept any amount, until cap if reached \(if cap is set\).   
+So, unlike absolute expense, it will not revert, if you send less money.  
+  
+You can use it like a normal fund, but there are some special cases: fund can be used as buffer between customers payments and the main money flow of an organization, or you can collect additional funds, that flows into a moneyflow.
 
 #### Parameters
 

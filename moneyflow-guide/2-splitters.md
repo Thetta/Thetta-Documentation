@@ -2,7 +2,7 @@
 description: (this section is still under construction)
 ---
 
-# 3 - Splitters
+# 4 - Splitters
 
 Splitter takes is an entity that receives ETHer and splits it into multiple destinations. There are two types of splitter: top-down, which send money to the outputs consistently, and unsorted, which send money in parallel. The difference between them appears when we deal with a relative expenses.
 

@@ -1,22 +1,29 @@
 # 2 - Receivers
 
-Receiver is an abstract class, that have a **processFunds\(\)**, **isNeedsMoney\(\)**, **getPartsPerMillion\(\)** methods. 
+**WeiReceiver** is an abstract smart contract. Every moneyflow element is a WeiReceiver.   
+It can send ETH further or be a terminal element. In the last case it is called "**a destination**". 
 
-**WeiReceiver** will revert, if you send money directly, so use payable **processFunds\(\)** function instead. It is a universal function to transfer money between moneyflow elements.
+Notable functions:
 
-Receiver have two inheritors – **Erc20Receiver** _\(not implemented yet\)_ and **WeiReceiver**. 
+* _processFunds_\(\) ****- TODO
+* _isNeedsMoney_\(\) - TODO
+* _getPartsPerMillion_\(\) - TODO
+* _getMinWeiNeeded_\(\) - TODO
+* _getTotalWeiNeeded_\(\) - TODO
 
-Since now moneyflow only works with ether, each moneyflow element is a WeiReceiver.
+The basic algorithm for moneyflow is to first request **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** from moneyflow entry point \(root node\), and then send ETH by calling **processFunds\(\)** function with the correct amount.
 
-WeiReceiver that have two methods – **getMinWeiNeeded\(\)** and **getTotalWeiNeeded\(\)**. 
+{% hint style="info" %}
+**WeiReceiver** will throw an exception, if you send money to it directly. Instead you should use  processFunds\(\) function.
+{% endhint %}
 
-The basic algorithm for moneyflow is to request  **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** from moneyflow entry point with a specified flow amount, and then send money by  **processFunds\(\)** function with am amount you get from **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)**.
+The difference between **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** exist in cases, where we have relative receiver. If moneyflow consist of absolute receivers only, the behavior of this two functions will be the same.
 
-The difference between **getMinWeiNeeded\(\)** or **getTotalWeiNeed\(\)** exist in cases, where we have relative expenses or fund. If moneyflow consist only absolute expenses and no funds, the behavior of this two functions will be the same.
+{% hint style="info" %}
+**WeiReceiver** will throw an exception, if you send more ETH than is needed. 
+{% endhint %}
 
-WeiReceiver have 5 implemented inheritors – **WeiTopDownSplitter**, **WeiUnsortedSplitter**, **WeiFund**, **WeiExpense**, **MoneyflowTable**.
-
- The first two elements,  is also **Splitters**, and the next two is **Destinations**, and the last one is a composition of splitters and expenses \(subclass of destinations\) in a single contract.
+The first two elements are **Splitters**,  the next two are **Destinations**, and the last one is a composition of splitters and expenses \(subclass of destinations\) in a single contract.
 
 
 
