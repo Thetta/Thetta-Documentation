@@ -22,7 +22,7 @@ bool yesICan = daoBase.isCanDoAction(msg.sender, daoBase.ISSUE_TOKENS());
 daoBase.issueTokens(repToken.address, employee1, 100);
 ```
 
-But sometimes, instead of directly minting tokens, you will want to start voting.
+But sometimes, instead of directly minting tokens, you want to start voting.
 
 ```javascript
 // 1 - ISSUE_TOKENS can be called with voting
@@ -33,11 +33,11 @@ daoBase.allowActionByVoting(dao.ISSUE_TOKENS(), token.address);
 bool yesICan = daoBase.isCanDoAction(msg.sender, daoBase.ISSUE_TOKENS());
 
 // 3 - Mint 100 tokens to employee1
-// now this will create new proposal and start new voting automatically
+// now this will create a proposal and start a new voting automatically
 daoBase.issueTokens(repToken.address, employee1, 100);
 ```
 
-In this case Thetta will automatically create a new Proposal and start a new Voting. Once voting is finished with "yes", action will be called automatically:
+In this case Thetta will automatically create a new Proposal and start a new Voting. Once a voting is finished with "yes", an action will be called automatically:
 
 ![](https://lh6.googleusercontent.com/LDt350Tq8oWYWtUMVBqR6fS_8uA2aHd9VncFhKSVryFuhmdf5d1ivfluON2KDb_IiW1JNwEj7ORb7-jvIYA-6uiI0puC3D7vHOJ8Y1txAEjQW_5FX8lELOA-fJ_RXq18UUMGPqGU)
 
