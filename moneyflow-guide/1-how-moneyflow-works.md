@@ -1,6 +1,6 @@
 # 1 - How moneyflow works
 
-## What is a Moneyflow?
+## What a Moneyflow is?
 
 Moneyflow – is a financial subsystem that can redistribute ETH according to the set of rules that is called  "a scheme". This subsystem can be utilized by any smart contract or a DAO.  
   
@@ -20,7 +20,7 @@ Following diagram represents a typical moneyflow scheme of some organization:
 
 You can think of moneyflow scheme as a tree, where each node is an instance of **WeiReceiver** smart contract. 
 
-An account or a smart contract that is a source of money is called "a source". Source is sending \(pushing\) ETH to the root node and is not a part of the scheme.  
+An account or a smart contract that is a source of ETH is called "a source". Source is sending \(pushing\) ETH to the root node and is not a part of the scheme.  
   
 The tree leaves are called "destinations". Destination ****is ****where ETH finally arrives, that's why it has no children.   
   
@@ -52,19 +52,25 @@ WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(2*eth);
 WeiUnsortedSplitter other = new WeiUnsortedSplitter('Other');
 WeiAbsoluteExpense office = new WeiAbsoluteExpense(1*eth);
 WeiUnsortedSplitter rest = new WeiUnsortedSplitter('Rest');
+
+// TODO: named parameters
 WeiRelativeExpenseWithPeriod reserveFund = new WeiRelativeExpenseWithPeriod(250000, 0, false);
 WeiRelativeExpenseWithPeriod dividendsFund = new WeiRelativeExpenseWithPeriod(750000, 0, false);
 
-// CONNECTIONS
-root.addChild(spends);
-spends.addChild(salaries);
+// Connect nodes
+other.addChild(office);
+
 salaries.addChild(employee1);
 salaries.addChild(employee2);
+
 spends.addChild(other);
-other.addChild(office);
-allOutpults.addChild(rest);
+spends.addChild(salaries);
+
 rest.addChild(reserveFund);
 rest.addChild(dividendsFund);
+
+root.addChild(spends);
+root.addChild(rest);
 ```
 
 

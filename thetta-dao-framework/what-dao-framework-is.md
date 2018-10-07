@@ -1,4 +1,4 @@
-# What Thetta DAO Framework is?
+# What Thetta DAO Framework is
 
 ### Thetta DAO Framework features these subsystems
 

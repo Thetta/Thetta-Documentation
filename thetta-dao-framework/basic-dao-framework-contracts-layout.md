@@ -1,4 +1,4 @@
-# Basic DAO Framework Contracts Layout
+# Basic smart contracts layout
 
 ![](https://lh6.googleusercontent.com/G4bUhvzrmAzN8HhVyxsMywPeGs_ZdEr2pK65fZBDvG_As2jehjyPMKhNbGzWJih37hCBlPcFIFRwoOkBxzwf9nSe2cleqalBWMkNoXGkKBWNRlEkMPrUUHisxqkTKVwpKwpRElxM)
 

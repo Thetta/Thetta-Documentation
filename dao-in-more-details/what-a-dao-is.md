@@ -1,4 +1,4 @@
-# What a DAO is?
+# What a DAO is
 
 ## What is a “Decentralized Autonomous Organization” \(DAO\)?
 
