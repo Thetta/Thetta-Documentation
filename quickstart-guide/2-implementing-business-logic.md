@@ -66,5 +66,5 @@ OK, what has been done?
 2. The **CakeOrderingOrganization** contract is implemented and will be controlled by you and your friends;
 3. A new action - **buySomeCake** - has been added and connected with the **BUY\_SOME\_CAKE** permission.
 
-We are going to grant permissions to all actors \(i.e., users or other contracts\) in the next chapter.
+Permissions will be granted to all actors \(i.e., users or other contracts\) in the next chapter.
 
