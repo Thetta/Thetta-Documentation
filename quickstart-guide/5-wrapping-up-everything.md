@@ -1,6 +1,6 @@
-# 5 - Wrapping up everything
+# 5 - Wrapping up
 
-Ok, last time our code looked like this:
+Last time the code looked like this:
 
 ```javascript
 pragma solidity ^0.4.24;
@@ -18,13 +18,13 @@ contract Bakery {
 	}
 }
 
-contract CakeByer {
+contract CakeBuyer {
 	function buySomeCakeInternal(Bakery _bakery) internal { 
 		_bakery.buySomeCake(msg.sender);
 	}
 }
 
-contract CakeOrderingOrganizaion is CakeByer, DaoClient {
+contract CakeOrderingOrganizaion is CakeBuyer, DaoClient {
 	bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
 	Bakery public bakery;
 
@@ -47,7 +47,7 @@ pragma solidity ^0.4.24;
 
 import "@thetta/core/contracts/DaoBase.sol";
 
-// we are importing Bakery, CakeByer, CakeOrderingOrganizaion definitions
+// we are importing Bakery, CakeBuyer, CakeOrderingOrganizaion definitions
 // (see above)
 import "./CakeOrderingOrganizaion.sol";
 
@@ -79,11 +79,11 @@ contract Deployer {
 }
 ```
 
-Deployer is a helper that allows you to deploy **CakeOrderingOrganization.**
+Deployer is a helper smart contract that allows you to deploy **CakeOrderingOrganization** to the selected Ethereum network.
 
 ### Conclusion
 
-You have converted the **CakeByer** smart contract to the **CakeOrderingOrganization** DAO that can be now controlled collectively by you and your friends!
+You have converted the **CakeBuyer** smart contract to the **CakeOrderingOrganization** DAO that can be now controlled collectively by you and your friends!
 
-The complete project \(example, tests and migrations\) is available here - [https://github.com/Thetta/Quickstart\_Guide](https://github.com/Thetta/Quickstart_Guide)
+The complete project \(examples, tests and migrations\) is available here - [https://github.com/Thetta/Quickstart\_Guide](https://github.com/Thetta/Quickstart_Guide)
 
