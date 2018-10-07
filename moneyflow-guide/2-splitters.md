@@ -4,23 +4,32 @@ description: (this section is still under construction)
 
 # 4 - Splitters
 
-Splitter takes is an entity that receives ETHer and splits it into multiple destinations. There are two types of splitter: top-down, which send money to the outputs consistently, and unsorted, which send money in parallel. The difference between them appears when we deal with a relative expenses.
+**WeiSplitter** is a node that has singleETH  input and multiple ETH outputs.   
+**WeiSplitter** consumes no ETH, so it polls its children in order to return the amount of ETH needed:
 
-Splitters do not need anything, but if you request them how much they need, they will request their children, which request their children, etc. Eventually, we will have a list of needs of destinations \(because only destination can be in the end of each brach\). Splitter will summarize it and get you an answer. So, only destinations have a needed amount.
+```javascript
+// TODO
+splitter = ...
+```
 
-Splitter can be **open\(\)** or **close\(\)**. So, in opened state splitter works as it should, but in closed state it ignore children need and do not accept money.
+There are two types of splitters: 
 
-You can **addChild\(\)** to splitter, **getChild\(\)** info or **getChildrenCount\(\)**.
+* **WeiTopDownSplitter** - the order of children nodes matters;
+* **WeiUnsortedSplitter** - the order of children nodes does not matter.
+
+Splitter can be **open\(\)** or **close\(\)**. In opened state splitter can receive ETH, but in closed state it ignores childrens' needs and does not accept money.
+
+You can **addChild\(\)** to splitter, **getChild\(\)** or or **getChildrenCount\(\)**.
 
 {% hint style="info" %}
-You SHOULD NOT send more ETH than needed to the splitter! It will throw exception.
+You SHOULD NOT send more ETH than needed to the splitter! It will throw an exception.
 {% endhint %}
 
+## 1. **WeiTopDownSplitter**
 
+In a top-down splitter ETH is flowing from the top to bottom. That is why the order of children nodes is very important. 
 
-## 1. **Top-down splitter**
-
-In a top-down splitter money are flowing from the top to bottom. That is why the order is very important, but if you have only absolute expenses, connected to splitter, there is no difference.   
+However, if splitter contains only absolute expenses, order does not matter.   
 ****
 
 ![](https://lh3.googleusercontent.com/hQoFzWjyGofSjlBVOBXE6rI6-ak8yZEVJ9JFGyU9oIVPDUl8XENlD3qzjCmG4l0Pu-UJisEiPoBvbxgk2d2EiblKbVZrEgOJFNUWwiD5c0_kO4b-k8KIWiGn024eqt7TJZFKx3qn)
@@ -41,11 +50,15 @@ spends.addChild(salaries);
 salaries.addChild(employee1);
 salaries.addChild(employee2);
 salaries.addChild(employee3);
+
+// TODO - ask needed amounts, etc
+// TODO - send money
+// TODO - show employee1, employee2, etc balances
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-## **2. Unsorted splitter**
+## **2. WeiUnsortedSplitter**
 
 In unsorted splitter there is no difference how children are ordered, i.e. you can swap any elements and the result will still stay the same.  
 ****![](https://lh5.googleusercontent.com/QeenERRhJwgH-zDVtHUZiOLhL0R9qa4jd4xtu8USx9LmGI7-O0w86rxPaX2Igphnm0VbX1FsKhtkBzud1odoKqgD4pGb8nDO2bEfUj-Kh1EpgtsGVe7xuKa-6CDeuMzn6ryGyx5u)
@@ -61,21 +74,10 @@ WeiAbsoluteExpense employee3 = new WeiAbsoluteExpense(3*eth);
 salaries.addChild(employee1);
 salaries.addChild(employee2);
 salaries.addChild(employee3);
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
 
-{% code-tabs %}
-{% code-tabs-item title="WeiUnsortedSplitter example 2.sol" %}
-```javascript
-WeiUnsortedSplitter rest = new WeiUnsortedSplitter('Rest');
-WeiRelativeExpenseWithPeriod reserveFund = new WeiRelativeExpenseWithPeriod(750000, 0, false);
-WeiRelativeExpenseWithPeriod dividendsFund = new WeiRelativeExpenseWithPeriod(250000, 0, false);
-
-// CONNECTIONS
-allOutpults.addChild(rest);
-rest.addChild(reserveFund);
-rest.addChild(dividendsFund);
+// TODO - ask needed amounts, etc
+// TODO - send money
+// TODO - show employee1, employee2, etc balances 
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}

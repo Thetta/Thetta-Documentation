@@ -4,17 +4,29 @@ description: (this section is still under construction)
 
 # 5 - Table
 
-**MonefrowTable** is a WeiReceiver,  that implements the composition of Destination and Splitter elements within a single contract. Receivers in it are represented as data structures. Table is convenient to use when you deal with a lot of elements, it dramatically reduces gas usage \(about 1:10 for data structures to separate contract\).
+**MoneflowTable** is a **WeiReceiver**,  that implements the composition of Destination and Splitter elements within a single contract. Instead of deploying many smart contracts you can use a single **MoneyflowTable** to dramatically reduce gas usage.
 
-MoneflowTable incudes a single entry point –an element with id equals to 0. So, if you request **getTotalWeiNeeded\(\)**, it would be equal to **getTotalWeiNeededForElement\(0\)**, similar for other functions.
+**MoneflowTable,** as any moneyflow node, features a _processFunds_\(\) function.
 
-Besides WeiReceiver functions, table includes WeiReceiver-like functions for each element, such as **getTotalWeiNeededForElement\(\)**, **getElementBalance\(\)**, **getMinWeiNeededForElement\(\)**, **isElementNeedsMoney\(\)**. 
+Notable functions:
 
-MoneflowTable also includes structural functions, such as **addAbsoluteExpense\(\)**, **addRelativeExpense\(\)**, **addTopdownSplitter\(\)**, **addUnsortedSplitter\(\)**, **addChild\(\)**. 
+* _getElementBalance_\(\) – TODO;
+* _isElementNeedsMoney_\(\) – returns true if node can receive ETH;
+* _getMinWeiNeededForElement_\(\) – returns a minimum amount of ETH, which node will accept;
+* _getTotalWeiNeededForElement_\(\) - TODO.
+* _addAbsoluteExpense_\(\), 
+* _addRelativeExpense_\(\), 
+* _addTopdownSplitter_\(\), 
+* _addUnsortedSplitter_\(\) 
+* _addChild_\(\)
+* _openElement_\(\)
+* _closeElement_\(\).
 
-As for Splitter, you can open/close MoneyflowTable elements with **openElement\(\)** and **closeElement\(\)**.
+{% hint style="info" %}
+**MoneyflowTable** is distinguished from the **Destination** by the fact that it have _withdrawFundsFromElement_\(\) instead of flush\(\)/flushTo\(\).
+{% endhint %}
 
-MoneyflowTable is distinguished from Destination by the fact that it have **withdrawFundsFromElement\(\)** instead of flush\(\)/flushTo\(\).
+### Code example
 
 {% code-tabs %}
 {% code-tabs-item title="Moneyflow table example.sol" %}

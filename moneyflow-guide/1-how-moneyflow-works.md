@@ -41,7 +41,7 @@ Expense can be absolute or relative. Relative means that this element will take 
 
 Also, this is absolutely legitimate, it is highly recommended to avoid later approach.
 
-### Code Example
+### Code example
 
 ```javascript
 WeiTopDownSplitter root = new WeiTopDownSplitter('Root');

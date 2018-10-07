@@ -16,7 +16,7 @@ The basic algorithm for moneyflow is to first request _getTotalWeiNeed_\(\) ****
 **WeiReceiver** will throw an exception, if you send money to it directly. Instead you should use  _processFunds_\(\) function.
 {% endhint %}
 
-### Absoulte vs Relative receivers
+### Absolute vs Relative receivers
 
 There are 2 types of WeiReceivers currently:
 
