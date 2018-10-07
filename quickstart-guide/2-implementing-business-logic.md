@@ -1,6 +1,6 @@
 # 2 - Implementing business logic
 
-Imagine a smart contract that orders cakes from the external bakery:​
+Imagine a smart contract that orders cakes from an external bakery:​
 
 ```javascript
 pragma solidity ^0.4.24;
@@ -15,7 +15,7 @@ contract Bakery {
 	}
 }
 
-contract CakeByer {
+contract CakeBuyer {
 	function buySomeCakeInternal(Bakery _bakery) internal { 
 		// just an example of some business logic
 		// (external call)
@@ -24,9 +24,9 @@ contract CakeByer {
 }
 ```
 
-What if you want **CakeByer** to be controlled not by anyone, even not by yourself \(the owner\), but by you AND some of your friends? So that is where Thetta comes in. 
+What if you want **CakeBuyer** to be controlled not only exclusively by you, but also by some of your friends? So that is where Thetta comes in. 
 
-Let's start by converting **CakeByer** to **CakeOrderingOrganization**: 
+Let's start by converting **CakeBuyer** to **CakeOrderingOrganization**: 
 
 ```javascript
 pragma solidity ^0.4.24;
@@ -34,11 +34,11 @@ pragma solidity ^0.4.24;
 import "@thetta/core/contracts/DaoClient.sol";
 import "@thetta/core/contracts/DaoBase.sol";
 
-// definitions of Bakery and CakeByer are removed for clarity (see above)
+// definitions of Bakery and CakeBuyer are removed for clarity (see above)
 contract Bakery { ... }
-contract CakeByer { ... }
+contract CakeBuyer { ... }
 
-contract CakeOrderingOrganizaion is CakeByer, DaoClient {
+contract CakeOrderingOrganizaion is CakeBuyer, DaoClient {
 	bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
 	Bakery public bakery;
 
@@ -60,11 +60,11 @@ The contract layout will now look as follows:
 
 ![](../.gitbook/assets/graph%20%281%29.png)
 
-Ok, what have we done?
+OK, what has been done?
 
-1. We left all business logic in the **CakeByer** contract;
-2. We implemented the **CakeOrderingOrganization** contract that will be controlled by you and your friends;
-3. We added new action - **buySomeCake** - and connected it with the **BUY\_SOME\_CAKE** permission.
+1. All business logic is left in the **CakeByer** contract;
+2. The **CakeOrderingOrganization** contract is implemented and will be controlled by you and your friends;
+3. A new action - **buySomeCake** - has been added and connected with the **BUY\_SOME\_CAKE** permission.
 
 We are going to grant permissions to all actors \(i.e., users or other contracts\) in the next chapter.
 
