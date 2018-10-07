@@ -12,7 +12,7 @@ There are many built-in actions provided by **Thetta core**:
 8. startBounty
 9. ...
 
-For example, DaoBase has **issueTokens** action that is defined like this:
+For example, the DaoBase smart contract has **issueTokens** action that is defined like this:
 
 ```javascript
 // this is the main Thetta DAO Framework contract
@@ -29,13 +29,13 @@ contract DaoBase {
 }
 ```
 
-In this case we call **issueTokens** an action, and **ISSUE\_TOKENS** a permission.
+In this case **issueTokens** is called an action, and **ISSUE\_TOKENS** - a permission.
 
 ### Setting permissions
 
-Thetta permissions work like AccessControlLists in your operating system.
+Thetta permissions work like Access Control List (ACL) in your operating system.
 
-In order to be able to call **buySomeCakes**action, one needs **BUY\_SOME\_CAKE** permission to be granted to his account. There are different options how you can set the permissions:
+To be able to call **buySomeCakes** action, one needs **BUY\_SOME\_CAKE** permission to be granted to their account. There are different options how one can set permissions:
 
 ```javascript
 function setPermissions(address _friend1, address _friend2, address _friend3) public {
