@@ -53,8 +53,8 @@ WeiUnsortedSplitter other = new WeiUnsortedSplitter('Other');
 WeiAbsoluteExpense office = new WeiAbsoluteExpense(1*eth);
 WeiUnsortedSplitter rest = new WeiUnsortedSplitter('Rest');
 
-WeiFund reserveFund = new WeiOneTimeFund(100*eth);
-WeiFund dividendsFund = new WeiInfiniteFund();
+WeiOneTimeFund reserveFund = new WeiOneTimeFund(100*eth);
+WeiInfiniteFund dividendsFund = new WeiInfiniteFund();
 
 // Connect nodes
 other.addChild(office);

@@ -23,7 +23,7 @@ There are 2 types of WeiReceivers currently:
 * Absolute - consumes absolute amounts of ETH, e.g.: 1 ETH;
 * Relative - consumes relative amounts of ETH, e.g.: 20%.
 
-The difference between _getMinWeiNeeded_\(\) or _getTotalWeiNeed_\(\) ****exists only in cases when the current scheme has at least one relative receiver. If the scheme consists of absolute receivers only, the behavior of this two functions will be the same.
+The difference between _getMinWeiNeeded_\(\) or _getTotalWeiNeed_\(\) ****exists only in cases when the current scheme has at least one relative receiver. If the scheme consists of absolute receivers only, the behavior of this two functions is the same.
 
 {% hint style="info" %}
 **WeiReceiver** will throw an exception, if you send more than _getTotalWeiNeeded_\(\) __or less than _getMinWeiNeeded_\(\)_._

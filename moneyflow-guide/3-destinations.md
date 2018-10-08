@@ -36,9 +36,7 @@ TODO - add pic of a generic fund
 
 ### WeiOneTimeFund / WeiInfiniteFund
 
-**WeiOneTimeFund** has a cap only. You can flush from a **WeiOneTimeFund** multiple times while sum is collecting, and it will not affect to cap, because total received value stores in a _totalWeiReceived_  variable, and when you flush, this variable not changes. 
-
-**WeiInfiniteFund** have no cap, and it will need money always.
+**WeiOneTimeFund** has a cap only. You can pull ETH from it ****many times, and it will not affect the cap.**WeiInfiniteFund** has no cap, and it will keep consuming any amount of ETH forever.
 
 {% code-tabs %}
 {% code-tabs-item title="" %}
