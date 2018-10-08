@@ -1,5 +1,5 @@
 ---
-description: (this section is still under construction)
+description: (still under construction)
 ---
 
 # Example 3

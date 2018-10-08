@@ -1,6 +1,6 @@
 # 4 - Splitters
 
-**WeiSplitter** is a node that has singleETH  input and multiple ETH outputs.   
+**WeiSplitter** is a node that has single ETH input and multiple ETH outputs.   
 **WeiSplitter** consumes no ETH, so it polls its children in order to return the amount of ETH needed:
 
 ```javascript

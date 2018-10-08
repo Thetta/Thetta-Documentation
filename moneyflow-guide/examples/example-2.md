@@ -1,3 +1,7 @@
+---
+description: (still under construction)
+---
+
 # Example 1 - Budget
 
 For example, we have an organization with a budget scheme like in section 1. So, we have 3 employees, spends for stuff like office and internet, bonuses from the income and two funds – reserve and dividends.  Our entry point is ****the **WeiTopDownSplitter**, that have 3 connected **WeiUnsortedSplitters**: Spends, Bonuses and Rest. While it is a top-down splitter, relative bonuses and the rest will calculates from a `inputSum – Spends`:
