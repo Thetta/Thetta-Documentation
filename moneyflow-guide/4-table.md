@@ -19,7 +19,7 @@ Notable functions:
 * _closeElement_\(\).
 
 {% hint style="info" %}
-**MoneyflowTable** is distinguished from the **Destination** by the fact that it have _withdrawFundsFromElement_\(\) instead of flush\(\)/flushTo\(\).
+**MoneyflowTable** is distinguished from the **Destination** by the fact that it have _withdrawFundsFromElement_\(\) instead of _flush_\(\)/_flushTo_\(\).
 {% endhint %}
 
 ### Code example
