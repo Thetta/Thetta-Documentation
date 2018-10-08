@@ -34,20 +34,27 @@ Unlike absolute expense, fund can accept less ETH than it needs.
 
 TODO - add pic of a generic fund
 
-### WeiOneTimeFund
+### WeiOneTimeFund / WeiInfiniteFund
 
-**WeiOneTimeFund** has a cap only. You can flush from a **WeiOneTimeFund** multiple times while sum is collecting, and it will not affect to cap, because total received value stores in a _totalWeiReceived_  variable, and when you flush, this variable not changes.
+**WeiOneTimeFund** has a cap only. You can flush from a **WeiOneTimeFund** multiple times while sum is collecting, and it will not affect to cap, because total received value stores in a _totalWeiReceived_  variable, and when you flush, this variable not changes. 
+
+**WeiInfiniteFund** have no cap, and it will need money always.
 
 {% code-tabs %}
 {% code-tabs-item title="" %}
 ```javascript
 WeiOneTimeFund fund = new WeiOneTimeFund(10*eth);
+WeiInfiniteFund infiniteFund = new WeiInfiniteFund();
 
 // 100 ETH is a maximum amount that we can send to the element in the current case
 // Still fund needs only 10 ETH
-uint totalNeed = fund.getTotalWeiNeeded(100*eth); // 10*eth
-uint minNeeded = fund.getMinWeiNeeded(); // 0
-uint isNeeded = fund.isNeedsMoney(); // true
+fund.getTotalWeiNeeded(100*eth); // 10*eth
+fund.getMinWeiNeeded(); // 0
+fund.isNeedsMoney(); // true
+
+infiniteFund.getTotalWeiNeeded(100*eth); // 100*eth
+infiniteFund.getMinWeiNeeded(); // 0
+infiniteFund.isNeedsMoney(); // true
 
 // send 3 ETH
 fund.processFunds.value(3*eth)(100*eth);
@@ -55,16 +62,30 @@ fund.processFunds.value(3*eth)(100*eth);
 fund.processFunds.value(3*eth)(100*eth);
 
 // now fund needs 4 more ETH
-totalNeeded = fund.getTotalWeiNeeded(100*eth); // 4*eth
-minNeeded = fund.getMinWeiNeeded(); // 0
-isNeeded = fund.isNeedsMoney(); // true
+fund.getTotalWeiNeeded(100*eth); // 4*eth
+fund.getMinWeiNeeded(); // 0
+fund.isNeedsMoney(); // true
 
+// send 3 ETH to infiniteFund
+infiniteFund.processFunds.value(3*eth)(100*eth);
+
+infiniteFund.getTotalWeiNeeded(100*eth); // 100*eth
+infiniteFund.getMinWeiNeeded(); // 0
+infiniteFund.isNeedsMoney(); // true
+
+// flash
 fund.flush();
 
 // Flush was not affected to getTotalWeiNeeded
-totalNeeded = fund.getTotalWeiNeeded(100*eth); // 4*eth
-minNeeded = fund.getMinWeiNeeded(); // 0
-isNeeded = fund.isNeedsMoney(); // true
+fund.getTotalWeiNeeded(100*eth); // 4*eth
+fund.getMinWeiNeeded(); // 0
+fund.isNeedsMoney(); // true
+
+// flash
+infiniteFund.flush();
+
+// Flush was not affected to getTotalWeiNeeded
+infiniteFund.getTotalWeiNeeded(100*eth); // 100*eth
 ```
 {% endcode-tabs-item %}
 
