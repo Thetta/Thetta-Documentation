@@ -36,7 +36,7 @@ TODO - add pic of a generic fund
 
 ### WeiOneTimeFund
 
-**WeiOneTimeFund** has a cap only.
+**WeiOneTimeFund** has a cap only. You can flush from a **WeiOneTimeFund** multiple times while sum is collecting, and it will not affect to cap, because total received value stores in a _totalWeiReceived_  variable, and when you flush, this variable not changes.
 
 {% code-tabs %}
 {% code-tabs-item title="" %}
@@ -55,6 +55,13 @@ fund.processFunds.value(3*eth)(100*eth);
 fund.processFunds.value(3*eth)(100*eth);
 
 // now fund needs 4 more ETH
+totalNeeded = fund.getTotalWeiNeeded(100*eth); // 4*eth
+minNeeded = fund.getMinWeiNeeded(); // 0
+isNeeded = fund.isNeedsMoney(); // true
+
+fund.flush();
+
+// Flush was not affected to getTotalWeiNeeded
 totalNeeded = fund.getTotalWeiNeeded(100*eth); // 4*eth
 minNeeded = fund.getMinWeiNeeded(); // 0
 isNeeded = fund.isNeedsMoney(); // true
@@ -112,20 +119,120 @@ TODO - add pic
 {% code-tabs %}
 {% code-tabs-item title="WeiExpense example.sol" %}
 ```javascript
-// TODO - show what is different between (as in the fund example)
-WeiAbsoluteExpense
-WeiAbsoluteExpenseWithPeriod
-WeiAbsoluteExpenseWithPeriodSliding
-WeiRelativeExpense
-WeiRelativeExpenseWithPeriod
-WeiRelativeExpenseWithPeriodSliding
+uint neededWei = 5*eth;
+uint periodInHours = 24;
+
+WeiAbsoluteExpense absoluteExpense = new WeiAbsoluteExpense(neededWei);
+WeiAbsoluteExpenseWithPeriod absoluteExpenseWithPeriod = new WeiAbsoluteExpenseWithPeriod(neededWei, periodInHours);
+WeiAbsoluteExpenseWithPeriodSliding absoluteExpenseWithPeriodSliding = new WeiAbsoluteExpenseWithPeriodSliding(neededWei, periodInHours);
+
+absoluteExpense.getTotalWeiNeeded(100*eth); // 5*eth
+absoluteExpense.getMinWeiNeeded(); // 5*eth
+absoluteExpense.isNeedsMoney(); // true
+
+absoluteExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
+absoluteExpenseWithPeriod.getMinWeiNeeded(); // 5*eth
+absoluteExpenseWithPeriod.isNeedsMoney(); // true
+
+absoluteExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 5*eth
+absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 5*eth
+absoluteExpenseWithPeriodSliding.isNeedsMoney(); // true
+
+// SEND MONEY
+
+absoluteExpense.processFunds.value(5*eth)(5*eth);
+absoluteExpenseWithPeriod.processFunds.value(5*eth)(5*eth);
+absoluteExpenseWithPeriodSliding.processFunds.value(5*eth)(5*eth);
+
+// AND THEN
+
+absoluteExpense.getTotalWeiNeeded(100*eth); // 0
+absoluteExpense.getMinWeiNeeded(); // 0
+absoluteExpense.isNeedsMoney(); // false
+
+absoluteExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 0
+absoluteExpenseWithPeriod.getMinWeiNeeded(); // 0
+absoluteExpenseWithPeriod.isNeedsMoney(); // false
+
+absoluteExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 0
+absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
+absoluteExpenseWithPeriodSliding.isNeedsMoney(); // false
+
+// TWO PERIODS PASSED
+
+absoluteExpense.getTotalWeiNeeded(100*eth); // 0
+absoluteExpense.getMinWeiNeeded(); // 0
+absoluteExpense.isNeedsMoney(); // false
+
+absoluteExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
+absoluteExpenseWithPeriod.getMinWeiNeeded(); // 5*eth
+absoluteExpenseWithPeriod.isNeedsMoney(); // true
+
+absoluteExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 10*eth
+absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 10*eth
+absoluteExpenseWithPeriodSliding.isNeedsMoney(); // true
+
 
 
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+```javascript
+uint partsPerMillion = 50000;
+uint periodInHours = 24;
 
+WeiRelativeExpense relativeExpense = new WeiRelativeExpense(partsPerMillion);
+WeiRelativeExpenseWithPeriod relativeExpenseWithPeriod = new WeiRelativeExpenseWithPeriod(partsPerMillion, periodInHours);
+WeiRelativeExpenseWithPeriodSliding relativeExpenseWithPeriodSliding = new WeiRelativeExpenseWithPeriodSliding(partsPerMillion, periodInHours);
+
+
+relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
+relativeExpense.getMinWeiNeeded(); // 0
+relativeExpense.isNeedsMoney(); // true
+
+relativeExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
+relativeExpenseWithPeriod.getMinWeiNeeded(); // 0
+relativeExpenseWithPeriod.isNeedsMoney(); // true
+
+relativeExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 5*eth
+relativeExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
+relativeExpenseWithPeriodSliding.isNeedsMoney(); // true
+
+// SEND MONEY
+
+relativeExpense.processFunds.value(5*eth)(100*eth);
+relativeExpenseWithPeriod.processFunds.value(5*eth)(100*eth);
+relativeExpenseWithPeriodSliding.processFunds.value(5*eth)(100*eth);
+
+// AND THEN
+
+relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
+relativeExpense.getMinWeiNeeded(); // 0
+relativeExpense.isNeedsMoney(); // true
+
+relativeExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 0
+relativeExpenseWithPeriod.getMinWeiNeeded(); // 0
+relativeExpenseWithPeriod.isNeedsMoney(); // false
+
+relativeExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 0
+relativeExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
+relativeExpenseWithPeriodSliding.isNeedsMoney(); // false
+
+// TWO PERIODS PASSED
+
+relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
+relativeExpense.getMinWeiNeeded(); // 0
+relativeExpense.isNeedsMoney(); // true
+
+relativeExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
+relativeExpenseWithPeriod.getMinWeiNeeded(); // 0
+relativeExpenseWithPeriod.isNeedsMoney(); // true
+
+relativeExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 10*eth
+relativeExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
+relativeExpenseWithPeriodSliding.isNeedsMoney(); // true
+```
 
 
 
