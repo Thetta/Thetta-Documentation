@@ -62,7 +62,7 @@ The contract layout will now look as follows:
 
 OK, what has been done?
 
-1. All business logic is left in the **CakeByer** contract;
+1. All business logic is left in the **CakeBuyer** contract;
 2. The **CakeOrderingOrganization** contract is implemented and will be controlled by you and your friends;
 3. A new action - **buySomeCake** - has been added and connected with the **BUY\_SOME\_CAKE** permission.
 
