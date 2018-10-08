@@ -70,12 +70,13 @@ Another definition of DAO [is available here](https://docs.google.com/document/d
       <td style="text-align:left">No</td>
     </tr>
     <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
+      <td style="text-align:left">TokenCuratedRegistry (TCR)</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left"><b>Yes</b>
+      </td>
     </tr>
   </tbody>
 </table>### \*\*\*\*
