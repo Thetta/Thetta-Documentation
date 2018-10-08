@@ -17,7 +17,7 @@
 * DAOs lead to better decision making: easier, done faster and more verifiable; 
 * DAOs can help you build entirely new business models;
 * DAOs can reduce costs;
-* DAOs can help you raise captital and control it.
+* DAOs can help you raise capital and control it.
 
   
   

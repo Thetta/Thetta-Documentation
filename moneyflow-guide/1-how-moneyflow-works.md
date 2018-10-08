@@ -53,14 +53,8 @@ WeiUnsortedSplitter other = new WeiUnsortedSplitter('Other');
 WeiAbsoluteExpense office = new WeiAbsoluteExpense(1*eth);
 WeiUnsortedSplitter rest = new WeiUnsortedSplitter('Rest');
 
-bool isPeriodic = false;
-bool isAccumulateDebt = false;
-uint periodInHours = 0;
-uint neededWeiReserve = 100*eth;
-uint neededWeiDividends = 0;
-
-WeiFund reserveFund = new WeiFund(neededWeiReserve, isPeriodic, isAccumulateDebt, periodInHours);
-WeiFund dividendsFund = new WeiFund(neededWeiDividends, isPeriodic, isAccumulateDebt, periodInHours); // Infinite fund
+WeiFund reserveFund = new WeiOneTimeFund(100*eth);
+WeiFund dividendsFund = new WeiInfiniteFund();
 
 // Connect nodes
 other.addChild(office);
