@@ -1,7 +1,3 @@
----
-description: (this section is still under construction)
----
-
 # 5 - Table
 
 **MoneflowTable** is a **WeiReceiver**,  that implements the composition of Destination and Splitter elements within a single contract. Instead of deploying many smart contracts you can use a single **MoneyflowTable** to dramatically reduce gas usage.

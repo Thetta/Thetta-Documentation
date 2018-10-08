@@ -31,25 +31,24 @@ contract DaoBase {
 
 In this case **issueTokens** is called an action, and **ISSUE\_TOKENS** - a permission.
 
-### Setting permissions
+## Setting permissions
 
-Thetta permissions work like Access Control List (ACL) in your operating system.
+Thetta permissions work like Access Control List \(ACL\) in your operating system.
 
 To be able to call **buySomeCakes** action, one needs **BUY\_SOME\_CAKE** permission to be granted to their account. There are different options how one can set permissions:
 
 ```javascript
 function setPermissions(address _friend1, address _friend2, address _friend3) public {
-	// Add some address (user or contract) to Friends group
-	daoBase.addGroupMember("Friends", _friend1);
-	daoBase.addGroupMember("Friends", _friend2);
+    // Add some address (user or contract) to Friends group
+    daoBase.addGroupMember("Friends", _friend1);
+    daoBase.addGroupMember("Friends", _friend2);
 
-	// This will allow any address that is a member of "Friends" group 
-	// to execute "buySomeCake" method:
-	daoBase.allowActionByAnyMemberOfGroup(cakeOrderingOrganizaion.BUY_SOME_CAKE(), "Friends");
+    // This will allow any address that is a member of "Friends" group 
+    // to execute "buySomeCake" method:
+    daoBase.allowActionByAnyMemberOfGroup(cakeOrderingOrganizaion.BUY_SOME_CAKE(), "Friends");
 
-	// To allow specific address to execute action without any voting:
-	daoBase.allowActionByAddress(cakeOrderingOrganizaion.BUY_SOME_CAKE(), _friend3);
+    // To allow specific address to execute action without any voting:
+    daoBase.allowActionByAddress(cakeOrderingOrganizaion.BUY_SOME_CAKE(), _friend3);
 }
-
 ```
 

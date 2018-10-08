@@ -6,27 +6,27 @@ Imagine a smart contract that orders cakes from an external bakery:​
 pragma solidity ^0.4.24;
 ​​
 contract Bakery {
-	uint public cakesOrdered = 0;
-	mapping (address=>bool) public isCakeProducedForAddress;
+    uint public cakesOrdered = 0;
+    mapping (address=>bool) public isCakeProducedForAddress;
 ​
-	function buySomeCake(address _cakeEater) public {
-		cakesOrdered = cakesOrdered + 1; // increase cakesOrdered var
-		isCakeProducedForAddress[_cakeEater] = true;
-	}
+    function buySomeCake(address _cakeEater) public {
+        cakesOrdered = cakesOrdered + 1; // increase cakesOrdered var
+        isCakeProducedForAddress[_cakeEater] = true;
+    }
 }
 
 contract CakeBuyer {
-	function buySomeCakeInternal(Bakery _bakery) internal { 
-		// just an example of some business logic
-		// (external call)
-		_bakery.buySomeCake(msg.sender);
-	}
+    function buySomeCakeInternal(Bakery _bakery) internal { 
+        // just an example of some business logic
+        // (external call)
+        _bakery.buySomeCake(msg.sender);
+    }
 }
 ```
 
-What if you want **CakeBuyer** to be controlled not only exclusively by you, but also by some of your friends? So that is where Thetta comes in. 
+What if you want **CakeBuyer** to be controlled not only exclusively by you, but also by some of your friends? So that is where Thetta comes in.
 
-Let's start by converting **CakeBuyer** to **CakeOrderingOrganization**: 
+Let's start by converting **CakeBuyer** to **CakeOrderingOrganization**:
 
 ```javascript
 pragma solidity ^0.4.24;
@@ -39,16 +39,16 @@ contract Bakery { ... }
 contract CakeBuyer { ... }
 
 contract CakeOrderingOrganizaion is CakeBuyer, DaoClient {
-	bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
-	Bakery public bakery;
+    bytes32 public constant BUY_SOME_CAKE = keccak256("buySomeCake");
+    Bakery public bakery;
 
-	constructor(Bakery _bakery, DaoBase _daoBase) public DaoClient(_daoBase){
-		bakery = _bakery;
-	}
+    constructor(Bakery _bakery, DaoBase _daoBase) public DaoClient(_daoBase){
+        bakery = _bakery;
+    }
 
-	function buySomeCake() public isCanDo(BUY_SOME_CAKE) {
-		buySomeCakeInternal(bakery);
-	}
+    function buySomeCake() public isCanDo(BUY_SOME_CAKE) {
+        buySomeCakeInternal(bakery);
+    }
 }
 ```
 

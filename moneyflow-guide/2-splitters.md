@@ -1,7 +1,3 @@
----
-description: (this section is still under construction)
----
-
 # 4 - Splitters
 
 **WeiSplitter** is a node that has singleETH  input and multiple ETH outputs.   

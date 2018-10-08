@@ -1,9 +1,9 @@
-# 1 - How Moneyflow works
+# 1 - How moneyflow works
 
 ## What Moneyflow is?
 
-Moneyflow – is a financial subsystem that can redistribute ETH according to the set of rules which is called "a scheme". This subsystem can be used by any smart contract or a DAO.  
-  
+Moneyflow – is a financial subsystem that can redistribute ETH according to the set of rules which is called "a scheme". This subsystem can be used by any smart contract or a DAO.
+
 Moneyflow can be used:
 
 * to receive money from third-party sources \(like customers and investors\)
@@ -18,13 +18,13 @@ Following diagram represents a typical moneyflow scheme of some organization:
 
 ![](https://lh4.googleusercontent.com/MnPsHXge9Q5PzDhg6rg0YHrgMsFIsLO5ynmuI2g4WYTholpQaS5riPgzvLbqic8Ymg_Q_tNE3mA0gV_Dwd-Pr0X_hBj7pdSOpsc0zV25toUovNCn6qBgYEopY5D1PPS7kO2wTOVf)
 
-You can think of a moneyflow scheme as a tree, where each node is an instance of **WeiReceiver** smart contract. 
+You can think of a moneyflow scheme as a tree, where each node is an instance of **WeiReceiver** smart contract.
 
-An account or a smart contract that is a source of ETH is called "a source". A source is sending \(pushing\) ETH to the root node and is not a part of the scheme.  
-  
-Tree leaves are called "destinations". Destination ****is ****where ETH ultimately stored, that's why it has no children.   
-  
-ETH is flowing from the source to destinations and is processed by internal elements that are called "splitters". A splitter never stores ETH, instead it redistributes ETH to its outputs. 
+An account or a smart contract that is a source of ETH is called "a source". A source is sending \(pushing\) ETH to the root node and is not a part of the scheme.
+
+Tree leaves are called "destinations". Destination **is** where ETH ultimately stored, that's why it has no children.
+
+ETH is flowing from the source to destinations and is processed by internal elements that are called "splitters". A splitter never stores ETH, instead it redistributes ETH to its outputs.
 
 {% hint style="info" %}
 Usually each moneyflow element is a separate smart contract, but you can use **MoneyflowTable** which can implement any moneyflow scheme, but in a single contract. It effectively reduces gas consumption.
@@ -53,9 +53,14 @@ WeiUnsortedSplitter other = new WeiUnsortedSplitter('Other');
 WeiAbsoluteExpense office = new WeiAbsoluteExpense(1*eth);
 WeiUnsortedSplitter rest = new WeiUnsortedSplitter('Rest');
 
-// TODO: named parameters
-WeiRelativeExpenseWithPeriod reserveFund = new WeiRelativeExpenseWithPeriod(250000, 0, false);
-WeiRelativeExpenseWithPeriod dividendsFund = new WeiRelativeExpenseWithPeriod(750000, 0, false);
+bool isPeriodic = false;
+bool isAccumulateDebt = false;
+uint periodInHours = 0;
+uint neededWeiReserve = 100*eth;
+uint neededWeiDividends = 0;
+
+WeiFund reserveFund = new WeiFund(neededWeiReserve, isPeriodic, isAccumulateDebt, periodInHours);
+WeiFund dividendsFund = new WeiFund(neededWeiDividends, isPeriodic, isAccumulateDebt, periodInHours); // Infinite fund
 
 // Connect nodes
 other.addChild(office);
@@ -72,6 +77,4 @@ rest.addChild(dividendsFund);
 root.addChild(spends);
 root.addChild(rest);
 ```
-
-
 

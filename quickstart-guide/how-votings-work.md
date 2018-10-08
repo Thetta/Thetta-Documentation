@@ -1,6 +1,6 @@
 # 4 - How votings work
 
-### Votings
+## Votings
 
 Usually if you have a permission to call an action \(imagine, **issueTokens\)** directly, you can just call issueTokens method and it will immediately mint some tokens:
 
@@ -14,7 +14,7 @@ daoBase.allowActionByAnyMemberOfGroup(daoBase.ISSUE_TOKENS(), "Managers");
 // 2 - Check permission 
 // this should be 'true'
 bool yesICan = daoBase.isCanDoAction(msg.sender, daoBase.ISSUE_TOKENS());
- 
+
 // 3 - Mint 100 tokens to employee1
 // daoBase is an owner of repToken and controlls it
 // to call this action you should have ISSUE_TOKENS permission granted
@@ -40,6 +40,4 @@ daoBase.issueTokens(repToken.address, employee1, 100);
 In this case Thetta will automatically create a new Proposal and start a new Voting. Once a voting is finished with "yes", an action will be called automatically:
 
 ![](https://lh6.googleusercontent.com/LDt350Tq8oWYWtUMVBqR6fS_8uA2aHd9VncFhKSVryFuhmdf5d1ivfluON2KDb_IiW1JNwEj7ORb7-jvIYA-6uiI0puC3D7vHOJ8Y1txAEjQW_5FX8lELOA-fJ_RXq18UUMGPqGU)
-
-
 
