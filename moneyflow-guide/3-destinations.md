@@ -81,9 +81,9 @@ Periodic funds ****have a cap and a period.
 Imagine, we set cap to 10 ETH and period to 1 week:
 
 ```javascript
-uint periodHours = 24 * 7;        // 1 week
+uint periodHours = 24 * 7; // 1 week
 WeiPeriodicFund fund = new WeiPeriodicFund(10*eth, periodHours);
-WeiPeriodicFundSliding fund2 = new WeiPeriodicFundSliding(10*eth, periodHours);
+WeiPeriodicFundSliding fundWithSliding = new WeiPeriodicFundSliding(10*eth, periodHours);
 
 // 100 ETH is a maximum amount that we can send to the element in the current case
 // Still fund needs only 10 ETH
@@ -93,7 +93,7 @@ uint isNeeded = fund.isNeedsMoney(); // true
 
 // send 3 ETH to both funds
 fund.processFunds.value(3*eth)(100*eth);
-fund2.processFunds.value(3*eth)(100*eth);
+fundWithSliding.processFunds.value(3*eth)(100*eth);
 
 // now fund needs 7 more ETH
 totalNeeded = fund.getTotalWeiNeeded(100*eth); // 7*eth
@@ -101,13 +101,12 @@ minNeeded = fund.getMinWeiNeeded(); // 0
 isNeeded = fund.isNeedsMoney(); // true
 
 // 1 week is passed here
+
 // fund needs 10 ETH only
 totalNeeded = fund.getTotalWeiNeeded(100*eth); // 10*eth
-// but fund2 needs 17 ETH
-totalNeeded = fund2.getTotalWeiNeeded(100*eth); // 17*eth
+// but fundWithSliding needs 17 ETH
+totalNeeded = fundWithSliding.getTotalWeiNeeded(100*eth); // 17*eth
 
-minNeeded = fund.getMinWeiNeeded(); // 0
-isNeeded = fund.isNeedsMoney(); // true
 ```
 
 ## 2. WeiExpense
@@ -139,13 +138,11 @@ absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 5*eth
 absoluteExpenseWithPeriodSliding.isNeedsMoney(); // true
 
 // SEND MONEY
-
 absoluteExpense.processFunds.value(5*eth)(5*eth);
 absoluteExpenseWithPeriod.processFunds.value(5*eth)(5*eth);
 absoluteExpenseWithPeriodSliding.processFunds.value(5*eth)(5*eth);
 
 // AND THEN
-
 absoluteExpense.getTotalWeiNeeded(100*eth); // 0
 absoluteExpense.getMinWeiNeeded(); // 0
 absoluteExpense.isNeedsMoney(); // false
@@ -159,7 +156,6 @@ absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
 absoluteExpenseWithPeriodSliding.isNeedsMoney(); // false
 
 // TWO PERIODS PASSED
-
 absoluteExpense.getTotalWeiNeeded(100*eth); // 0
 absoluteExpense.getMinWeiNeeded(); // 0
 absoluteExpense.isNeedsMoney(); // false
@@ -171,9 +167,6 @@ absoluteExpenseWithPeriod.isNeedsMoney(); // true
 absoluteExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 10*eth
 absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 10*eth
 absoluteExpenseWithPeriodSliding.isNeedsMoney(); // true
-
-
-
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -185,7 +178,6 @@ uint periodInHours = 24;
 WeiRelativeExpense relativeExpense = new WeiRelativeExpense(partsPerMillion);
 WeiRelativeExpenseWithPeriod relativeExpenseWithPeriod = new WeiRelativeExpenseWithPeriod(partsPerMillion, periodInHours);
 WeiRelativeExpenseWithPeriodSliding relativeExpenseWithPeriodSliding = new WeiRelativeExpenseWithPeriodSliding(partsPerMillion, periodInHours);
-
 
 relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
 relativeExpense.getMinWeiNeeded(); // 0
@@ -200,13 +192,11 @@ relativeExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
 relativeExpenseWithPeriodSliding.isNeedsMoney(); // true
 
 // SEND MONEY
-
 relativeExpense.processFunds.value(5*eth)(100*eth);
 relativeExpenseWithPeriod.processFunds.value(5*eth)(100*eth);
 relativeExpenseWithPeriodSliding.processFunds.value(5*eth)(100*eth);
 
 // AND THEN
-
 relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
 relativeExpense.getMinWeiNeeded(); // 0
 relativeExpense.isNeedsMoney(); // true
@@ -220,7 +210,6 @@ relativeExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
 relativeExpenseWithPeriodSliding.isNeedsMoney(); // false
 
 // TWO PERIODS PASSED
-
 relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
 relativeExpense.getMinWeiNeeded(); // 0
 relativeExpense.isNeedsMoney(); // true
