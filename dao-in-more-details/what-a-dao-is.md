@@ -28,7 +28,7 @@ In a DAO collusion attacks are treated as a bug, whereas in a DO they are a feat
 
 {% embed data="{\"url\":\"https://blog.ethereum.org/2014/05/06/daos-dacs-das-and-more-an-incomplete-terminology-guide/\",\"type\":\"link\",\"title\":\"DAOs, DACs, DAs and More: An Incomplete Terminology Guide\",\"description\":\"One of the most popular topics in the digital consensus space \(a new term for cryptocurrency 2.0 that I’m beta-testing\) is the concept of decentralized autonomous entities. There are now a number of groups rapidly getting involved in the space, including Bitshares \(also known as Invictus Innovations\) developing “decentralized autonomous...\",\"thumbnail\":{\"type\":\"thumbnail\",\"url\":\"https://blog.ethereum.org/img/avatar-icon.png\",\"width\":512,\"height\":512,\"aspectRatio\":1}}" %}
 
-|  | Decentralized | Multiple actors | Internal capital | Incentives | DAO? |
+|  | Decentralized  \(uses Blockhain\) | Multiple actors | Internal capital | Incentives | DAO? |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | McDonald's | - | + | + | + | No |
 | TheDAO | + | + | + | + | **Yes** |
