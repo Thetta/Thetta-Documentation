@@ -41,6 +41,14 @@ In a DAO collusion attacks are treated as a bug, whereas in a DO they are a feat
   </thead>
   <tbody>
     <tr>
+      <td style="text-align:left">McDonald's</td>
+      <td style="text-align:left">-</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
       <td style="text-align:left">TheDAO</td>
       <td style="text-align:left">+</td>
       <td style="text-align:left">+</td>
