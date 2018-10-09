@@ -65,15 +65,22 @@ In unsorted splitter there is no difference how children are ordered, i.e. you c
 WeiUnsortedSplitter salaries = new WeiUnsortedSplitter('Salaries');
 WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(1*eth);
 WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(2*eth);
-WeiAbsoluteExpense employee3 = new WeiAbsoluteExpense(3*eth);
-​
+
 salaries.addChild(employee1);
 salaries.addChild(employee2);
-salaries.addChild(employee3);
 
-// TODO - ask needed amounts, etc
-// TODO - send money
-// TODO - show employee1, employee2, etc balances 
+salaries.getMinWeiNeeded(); // 3 eth
+salaries.getTotalWeiNeeded(); // 3 eth
+salaries.isNeedsMoney(); // true
+
+salaries.processFunds.value(3*eth)(3*eth);
+
+salaries.getMinWeiNeeded(); // 0
+salaries.getTotalWeiNeeded(); // 0
+salaries.isNeedsMoney(); // false
+
+address(employee1).balance() // 1 eth
+address(employee2).balance() // 2 eth
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}

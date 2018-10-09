@@ -4,26 +4,31 @@ description: (still under construction)
 
 # 5 - Table
 
-**MoneflowTable** is a **WeiReceiver**,  that implements the composition of Destination and Splitter elements within a single contract. Instead of deploying many smart contracts you can use a single **MoneyflowTable** to dramatically reduce gas usage.
+**WeiTable** is a **WeiReceiver**,  that implements the composition of Destination and Splitter elements within a single contract. Instead of deploying many smart contracts you can use a single **WeiTable** to dramatically reduce gas usage.
 
-**MoneflowTable,** as any moneyflow node, features a _processFunds_\(\) function.
+**WeiTable,** as any moneyflow node, features a _processFunds_\(\) function.
+
+{% hint style="info" %}
+**WeiTable** has functions for working both with individual nodes and with all **WeiTable** entirely. **IWeiReceiver** functions are interpreted as referring to a node with id equal to zero. For example, weiTable._getMinWeiNeeded\(\)_ is equal to weiTable.node\__getMinWeiNeeded\(0\)_.
+{% endhint %}
 
 Notable functions:
 
-* _getElementBalance_\(\) – TODO;
-* _isElementNeedsMoney_\(\) – returns true if node can receive ETH;
-* _getMinWeiNeededForElement_\(\) – returns a minimum amount of ETH, which node will accept;
-* _getTotalWeiNeededForElement_\(\) - TODO.
-* _addAbsoluteExpense_\(\), 
-* _addRelativeExpense_\(\), 
-* _addTopdownSplitter_\(\), 
-* _addUnsortedSplitter_\(\) 
-* _addChild_\(\)
-* _openElement_\(\)
-* _closeElement_\(\).
+* _node\_balance_\(\) – get balance, that associated with node.
+* _node\_isNeedsMoney_\(\) – returns true if node can receive ETH;
+* _node\_getMinWeiNeeded_\(\) – returns a minimum amount of ETH, which node will accept;
+* _node\_getTotalWeiNeeded_\(\) – returns a maximum amount of ETH, which node will accept;
+* _addAbsoluteExpense_\(\) – create absolute expense node; it should be connected to a splitter in the weiTable
+* _addRelativeExpense_\(\) – create relative expense node; it should be connected to a splitter in the weiTable
+* _addTopdownSplitter_\(\) – create topdown splitter node; it should be connected to a splitter in the weiTable
+* _addUnsortedSplitter_\(\) – create unsorted splitter node; it should be connected to a splitter in the weiTable
+* _node\_addChild_\(\) – connect a node to a splitter or 0-node
+* _node\_open_\(\) – make node acceptable for transfer amounts. By default, all nodes are open
+* _node\_close_\(\) – make node non-acceptable for transfer amounts. If node is closed, needed amount is 0, and processFunds will revert.
+* node\_flushTo\(\) – flush funds, that associated with node, to the specified address.
 
 {% hint style="info" %}
-**MoneyflowTable** is distinguished from the **Destination** by the fact that it have _withdrawFundsFromElement_\(\) instead of _flush_\(\)/_flushTo_\(\).
+**WeiTable** is distinguished from the **Destination** by the fact that it have _node\_flushTo\(\)_ instead of _flush_\(\)/_flushTo_\(\).
 {% endhint %}
 
 ### Code example

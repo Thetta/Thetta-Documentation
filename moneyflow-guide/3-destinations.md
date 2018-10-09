@@ -149,12 +149,7 @@ absoluteExpense.getMinWeiNeeded(); // 5*eth
 absoluteExpense.isNeedsMoney(); // true
 
 absoluteExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
-absoluteExpenseWithPeriod.getMinWeiNeeded(); // 5*eth
-absoluteExpenseWithPeriod.isNeedsMoney(); // true
-
 absoluteExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 5*eth
-absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 5*eth
-absoluteExpenseWithPeriodSliding.isNeedsMoney(); // true
 
 // SEND MONEY
 absoluteExpense.processFunds.value(5*eth)(5*eth);
@@ -163,29 +158,13 @@ absoluteExpenseWithPeriodSliding.processFunds.value(5*eth)(5*eth);
 
 // AND THEN
 absoluteExpense.getTotalWeiNeeded(100*eth); // 0
-absoluteExpense.getMinWeiNeeded(); // 0
-absoluteExpense.isNeedsMoney(); // false
-
 absoluteExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 0
-absoluteExpenseWithPeriod.getMinWeiNeeded(); // 0
-absoluteExpenseWithPeriod.isNeedsMoney(); // false
-
 absoluteExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 0
-absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
-absoluteExpenseWithPeriodSliding.isNeedsMoney(); // false
 
 // TWO PERIODS PASSED
 absoluteExpense.getTotalWeiNeeded(100*eth); // 0
-absoluteExpense.getMinWeiNeeded(); // 0
-absoluteExpense.isNeedsMoney(); // false
-
 absoluteExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
-absoluteExpenseWithPeriod.getMinWeiNeeded(); // 5*eth
-absoluteExpenseWithPeriod.isNeedsMoney(); // true
-
 absoluteExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 10*eth
-absoluteExpenseWithPeriodSliding.getMinWeiNeeded(); // 10*eth
-absoluteExpenseWithPeriodSliding.isNeedsMoney(); // true
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -203,12 +182,7 @@ relativeExpense.getMinWeiNeeded(); // 0
 relativeExpense.isNeedsMoney(); // true
 
 relativeExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
-relativeExpenseWithPeriod.getMinWeiNeeded(); // 0
-relativeExpenseWithPeriod.isNeedsMoney(); // true
-
 relativeExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 5*eth
-relativeExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
-relativeExpenseWithPeriodSliding.isNeedsMoney(); // true
 
 // SEND MONEY
 relativeExpense.processFunds.value(5*eth)(100*eth);
@@ -217,29 +191,13 @@ relativeExpenseWithPeriodSliding.processFunds.value(5*eth)(100*eth);
 
 // AND THEN
 relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
-relativeExpense.getMinWeiNeeded(); // 0
-relativeExpense.isNeedsMoney(); // true
-
 relativeExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 0
-relativeExpenseWithPeriod.getMinWeiNeeded(); // 0
-relativeExpenseWithPeriod.isNeedsMoney(); // false
-
 relativeExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 0
-relativeExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
-relativeExpenseWithPeriodSliding.isNeedsMoney(); // false
 
 // TWO PERIODS PASSED
 relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
-relativeExpense.getMinWeiNeeded(); // 0
-relativeExpense.isNeedsMoney(); // true
-
 relativeExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
-relativeExpenseWithPeriod.getMinWeiNeeded(); // 0
-relativeExpenseWithPeriod.isNeedsMoney(); // true
-
 relativeExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 10*eth
-relativeExpenseWithPeriodSliding.getMinWeiNeeded(); // 0
-relativeExpenseWithPeriodSliding.isNeedsMoney(); // true
 ```
 
 
