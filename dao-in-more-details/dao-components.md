@@ -15,7 +15,7 @@ As stated by Vitalik Buterin in the article above, when we say “decentralizati
 ### Heuristics
 
 {% hint style="info" %}
-Please notice: this is our **very subjective** interpretation of these terms.
+Please notice: this is a **very subjective** interpretation of these terms made by us.
 {% endhint %}
 
 Let's introduce heuristics that we are going to use as a predicates:

@@ -17,8 +17,8 @@ The obvious difference between a DO and a DAO, and the one inherent in the langu
 In order to be a DAO, system:
 
 * D - Should be politically AND architecturally decentralized;
-* A \(weak\) - Should be self-governing, i.e.: should have clear governance rules and incentives;
-* O - Should be comprised of multiple actors;
+* A \(weak\) - Should be able to make decisions based on objective facts provided by other actors in order to adapt to changes;
+* O - Should be comprised of multiple actors with clear governance rules and incentives;
 * \(additional requirement\) Should have internal capital.
 
 
@@ -28,8 +28,8 @@ In order to be a DAO, system:
     <tr>
       <th style="text-align:left"></th>
       <th style="text-align:left">Politically AND architecturally decentralized</th>
+      <th style="text-align:left">Some decisions made by code</th>
       <th style="text-align:left">Clear governance rules and incentives</th>
-      <th style="text-align:left">Multiple actors</th>
       <th style="text-align:left">Internal capital</th>
       <th style="text-align:left">DAO?</th>
     </tr>
@@ -55,7 +55,7 @@ In order to be a DAO, system:
     <tr>
       <td style="text-align:left">2-of-3 multisig wallet</td>
       <td style="text-align:left">+</td>
-      <td style="text-align:left">+</td>
+      <td style="text-align:left">-</td>
       <td style="text-align:left">+</td>
       <td style="text-align:left">+</td>
       <td style="text-align:left">No</td>
@@ -73,7 +73,7 @@ In order to be a DAO, system:
     <tr>
       <td style="text-align:left">Any Ethereum DApp or a smart contract</td>
       <td style="text-align:left">-</td>
-      <td style="text-align:left">-</td>
+      <td style="text-align:left">+</td>
       <td style="text-align:left">-</td>
       <td style="text-align:left">-</td>
       <td style="text-align:left">No</td>
@@ -93,20 +93,15 @@ In order to be a DAO, system:
         <p>(system)</p>
       </td>
       <td style="text-align:left">+</td>
-      <td style="text-align:left">-</td>
       <td style="text-align:left">+</td>
+      <td style="text-align:left">-</td>
       <td style="text-align:left">-</td>
       <td style="text-align:left">No</td>
     </tr>
   </tbody>
-</table>## **Resume \(simplified\)**
+</table>## **Resume**
 
-1. DAO should be architecturally and politically **decentralized**;
-2. DAO should allow the autonomous logic to make decisions based on **objective** facts provided by other actors;
-3. DAO should **adapt** to changes;
-4. DAO should have a **working business model**/useful economic equilibria.
-
-#### DAO often consists of:
+DAO often consists of:
 
 1. Assets/property: internal currency, tokens, etc;
 2. Actors: curators, moderators, token holders, robots, smart contracts, etc;

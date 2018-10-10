@@ -25,7 +25,11 @@ In this sense we either:
 
 > "Autonomous organizations are independent or self-governing."
 
-Speaking about DAOs and crypto, we are going to use this definition instead of a stronger definition of an "autonomous" \(see above\). In this sense, Bitcoin is "autonomous" and TheDAO is "autonomous" too. 
+{% hint style="success" %}
+Our definition: **"In autonomous organizations logic can make decisions based on objective facts provided by other actors"**
+{% endhint %}
+
+Speaking about DAOs and crypto, we are going to use this definition instead of a stronger definition mentioned above. In this sense, Bitcoin is "autonomous" and TheDAO is "autonomous" too. 
 
 ## Resume. Why "Autonomous"?
 
