@@ -1,4 +1,4 @@
-# Organization?
+# Organization
 
 ## Definition of an "Organization"
 

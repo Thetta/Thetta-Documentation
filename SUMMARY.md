@@ -2,9 +2,9 @@
 
 * [Documentation](README.md)
 * [DAO](dao-in-more-details/README.md)
-  * [Decentralized?](dao-in-more-details/dao-components.md)
-  * [Autonomous?](dao-in-more-details/autonomous.md)
-  * [Organization?](dao-in-more-details/organization.md)
+  * [Decentralized](dao-in-more-details/dao-components.md)
+  * [Autonomous](dao-in-more-details/autonomous.md)
+  * [Organization](dao-in-more-details/organization.md)
   * [What a DAO is](dao-in-more-details/what-a-dao-is.md)
   * [Why and when do you need a DAO](dao-in-more-details/why-you-need-a-dao.md)
 * [Thetta DAO Framework](thetta-dao-framework/README.md)

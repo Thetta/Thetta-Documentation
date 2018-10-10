@@ -1,4 +1,4 @@
-# Autonomous?
+# Autonomous
 
 ## Definition \(strong\) of an "Autonomous"
 

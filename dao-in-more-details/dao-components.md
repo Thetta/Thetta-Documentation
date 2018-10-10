@@ -1,4 +1,4 @@
-# Decentralized?
+# Decentralized
 
 ## Definition of a **"Decentralized"**
 
