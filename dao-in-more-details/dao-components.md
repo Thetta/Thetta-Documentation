@@ -1,41 +1,147 @@
-# DAO Components
+# Decentralized?
 
-### **What “decentralized” component of a DAO really means?**
+## Definition of a **"Decentralized"**
 
-[As stated by Vitalik Buterin](https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274), when we say “Decentralization” we mean these different terms:
+{% embed url="https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274" %}
 
-1. Architectural \(de\)centralization — how many physical computers is a system made up of? How many of those computers can it tolerate breaking down at any single time?
-2. Political \(de\)centralization — how many individuals or organizations ultimately control the computers that the system is made up of?
+Often, people think that “decentralized” means “uses blockchain", but that is not a correct understanding of that term.
+
+As stated by Vitalik Buterin in the article above, when we say “decentralization” we mean these different terms:
+
+1. Political \(de\)centralization — how many individuals or organizations ultimately control the computers that the system is made up of?
+2. Architectural \(de\)centralization — how many physical computers is a system made up of? How many of those computers can it tolerate breaking down at any single time?
 3. Logical \(de\)centralization— does the interface and data structures that the system presents and maintains look more like a single monolithic object, or an amorphous swarm?
 
-A Blockchain features 1 and 2, but not 3 because whole blockchain behaves like a single system. As long as DAO runs on top of blockchain, it features same set of properties.
+### Heuristics
 
-### **Why “decentralized” is a core component of a DAO?**
+{% hint style="info" %}
+Please notice: this is our **very subjective** interpretation of these terms.
+{% endhint %}
+
+Let's introduce heuristics that we are going to use as a predicates:
+
+1. Politically decentralized - TODO;
+2. Architecturally decentralized - TODO;
+3. Logically decentralized - if you cut the system in half, including both providers and users, will both halves continue to fully operate as independent units?
+
+Example: a Blockchain \(as a system\) features 1 and 2, but not 3 because whole blockchain behaves like a single system.
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"></th>
+      <th style="text-align:left">
+        <p><b>Politically</b>
+        </p>
+        <p><b>decentralized</b>
+        </p>
+      </th>
+      <th style="text-align:left"><b>Architecturally<br />decentralized</b>
+      </th>
+      <th style="text-align:left">
+        <p>Logically</p>
+        <p>decentralized</p>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">McDonald's</td>
+      <td style="text-align:left">
+        <p>-</p>
+        <p>(one CEO only)</p>
+      </td>
+      <td style="text-align:left">
+        <p>+</p>
+        <p>(one head office, but many almost independent divisions)</p>
+      </td>
+      <td style="text-align:left">
+        <p>-</p>
+        <p>(McDonald's USA and McDonald's Europe can not work as independent units,
+          because they need coordination: menu, design, ads, etc should stay consistent)</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">TheDAO</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">
+        <p>-</p>
+        <p>(single TheDAO acts as a single system, even though it can have child
+          DAOs or forks)</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">2-of-3 multisig wallet</td>
+      <td style="text-align:left">
+        <p>+</p>
+        <p>(many owners)</p>
+      </td>
+      <td style="text-align:left">+
+        <br />(runs on top of blockchain, that consists of many mining node)
+        <br />
+      </td>
+      <td style="text-align:left">
+        <p>-</p>
+        <p>(single entity)</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">"Bitcoin, BTC"
+        <br />(system, not a protocol)</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">
+        <p>-</p>
+        <p>(has a single state that is shared by all users)</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p>Any Ethereum DApp</p>
+        <p>or a smart contract</p>
+      </td>
+      <td style="text-align:left">
+        <p>-</p>
+        <p>(not necessary has many owners, can be controlled by a single entity)</p>
+      </td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">
+        <p>-</p>
+        <p>(behaves like a single system)</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">TokenCuratedRegistry (system, not a protocol)</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left">
+        <p>-</p>
+        <p>(single TCR can not be split in 2 parts)</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Bittorrent
+        <br />(system, not a protocol)</td>
+      <td style="text-align:left">
+        <p>+</p>
+        <p>(not controlled by a single entity)</p>
+      </td>
+      <td style="text-align:left">
+        <p>+</p>
+        <p>(even if some computers will be switched off, you will be able to download
+          a file)</p>
+      </td>
+      <td style="text-align:left">+
+        <br />(more than 200+ trackers each has it's own list of files, i.e. "view of
+        the world")</td>
+    </tr>
+  </tbody>
+</table>## **Resume. Why “Decentralized”?**
 
 Three reasons for Decentralization:
 
 * **Fault tolerance**— decentralized systems are less likely to fail accidentally because they rely on many separate components that are not likely;
 * **Attack resistance**— decentralized systems are more expensive to attack and destroy or manipulate because they lack sensitive central points that can be attacked at much lower cost than the economic size of the surrounding system;
 * **Collusion resistance** — it is much harder for participants in decentralized systems to collude to act in ways that benefit them at the expense of other participants, whereas the leaderships of corporations and governments collude in ways that benefit themselves but harm less well-coordinated citizens, customers, employees and the general public all the time.
-
-### **What is a “Sovereign Software”?**
-
-[Sovereignty](https://docs.google.com/document/d/1Oghfq1VFfGvScxzNWD14vNg_fEAC8HVrfVVVU3Al-gA/edit?usp=sharing) is the full right and power of a governing body over itself, without any interference from outside sources or bodies.
-
-When software combines the capabilities of self ownership, property rights, and predictable behavior, with a competitive system of commerce facilitating incentive mechanisms; it can achieve sovereignty.
-
-When an autonomous system has the ability to make changes to itself while intentionally avoiding violations of its terminal goals or mission statement, it is sovereign. This governance system can be achieved by using artificial intelligence or by mechanisms that delegate this authority to humans without sacrificing autonomy.
-
-### **Should the “Autonomous” be changed to the “Adaptive”?**
-
-\*\*\*\*[So, perhaps the highest leverage](https://medium.com/@FEhrsam/funding-the-evolution-of-blockchains-87d160988481) thing protocol designers can do is think about how to engineer the evolutionary characteristics of their blockchains — specifically, the economic incentives for anyone to come along and improve them. The best engineered organisms can outpace others, even if they start smaller or later.  
-  
-Cryptoeconomic protocols create financial incentives that drive a network of rational economic agents to coordinate their behavior.
-
-### **Resume \(simplified\)**
-
-1. DAO should be architecturally and politically **decentralized**;
-2. DAO should allow the autonomous logic to make decisions based on **objective** facts provided by other actors;
-3. DAO should **adapt** to changes;
-4. DAO should have a **working business model**/useful economic equilibria.
 

@@ -2,9 +2,11 @@
 
 * [Documentation](README.md)
 * [DAO](dao-in-more-details/README.md)
+  * [Decentralized?](dao-in-more-details/dao-components.md)
+  * [Autonomous?](dao-in-more-details/autonomous.md)
+  * [Organization?](dao-in-more-details/organization.md)
   * [What a DAO is](dao-in-more-details/what-a-dao-is.md)
   * [Why and when do you need a DAO](dao-in-more-details/why-you-need-a-dao.md)
-  * [DAO Components](dao-in-more-details/dao-components.md)
 * [Thetta DAO Framework](thetta-dao-framework/README.md)
   * [What Thetta DAO Framework is](thetta-dao-framework/what-dao-framework-is.md)
   * [Basic smart contracts layout](thetta-dao-framework/basic-dao-framework-contracts-layout.md)
