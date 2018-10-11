@@ -1,6 +1,6 @@
 # Decentralized
 
-## Definition of a **"Decentralized"**
+## Definition of **"Decentralized"**
 
 {% embed url="https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274" %}
 

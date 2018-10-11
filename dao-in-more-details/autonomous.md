@@ -1,6 +1,6 @@
 # Autonomous
 
-## Definition of an "Autonomous" \(from AI industry\)
+## Definition of "Autonomous" \(AI industry\)
 
 {% embed url="https://medium.com/swlh/whats-the-difference-between-dapp-idapp-and-dao-and-why-they-are-the-future-of-blockchain-52758f50474e" %}
 
@@ -19,7 +19,7 @@ In this sense we either:
 3. Should treat all "DAO" projects as DOs, but not DAOs \(even "TheDAO"\);
 4. Should use another acronym/term like ["AI DAO"](https://medium.com/@trentmc0/ai-daos-and-three-paths-to-get-there-cfa0a4cc37b8). 
 
-## Definition of an "Autonomous" \(by Thetta\)
+## Definition of "Autonomous" \(by Thetta\)
 
 [Wiki](https://en.wikipedia.org/wiki/Autonomy): "Autonomous organizations are independent or self-governing". It sounds good and is short, but definitions of "independence" and "self-governance" are very ambiguous. That's why we are going to introduce our own definition:
 
