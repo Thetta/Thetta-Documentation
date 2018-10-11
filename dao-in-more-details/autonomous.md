@@ -36,16 +36,11 @@ Synthetic definition by Thetta \(weak\): **"A system is Autononomous in the part
 1. Apple Inc. obeys rules of Legal system. But Legal system does not obey rules of Apple Inc.; 
 2. Apple Inc. obeys rules of Legal system **and** USA **and** United Nations.
 
-![](../.gitbook/assets/a2.png)
+![](../.gitbook/assets/a2%20%281%29.png)
 
-The Mobile dept. obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations.   
-But Mobile dept. is NOT autonomous because it obeys rules of the Design dept. \(same level\) too.
-
-The Design dept. obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations.  
-But Design dept. is NOT autonomous because it obeys rules of Tim Cook \(higher level\) too.
-
-Tim Cook obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations.  
-But Tim Cook DOES NOT obey rules of a Design dept. and there is no one above him! That's why he is Autonomous.
+1. The Mobile dept. obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations.  But Mobile dept. is NOT autonomous because it obeys rules of the Design dept. \(same level\) too; 
+2. The Design dept. obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations. But Design dept. is NOT autonomous because it obeys rules of Tim Cook \(higher level\) too; 
+3. Tim Cook obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations. But Tim Cook DOES NOT obey rules of a Design dept. and there is no one above him! That's why he is Autonomous.
 
 {% hint style="danger" %}
 Still, in reality there is no even a single system that is trully autonomous \(in this sense\). Even Tim Cook has some formal/informal input from the same level \(CEOs of Samsung, chip manufacturers, etc\) and from the level above \(Apple investors\).
