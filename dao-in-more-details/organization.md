@@ -17,8 +17,8 @@ Example: "TheDAO" as an organization \(in this sense\) consists of:
 
 What is not included:
 
-1. Domain and web site - **DaoHub.org**
-2. Legal entity - **DAO.Link** company
+1. Domain and web site - **DaoHub.org** \(asset, but not an internal capital\)
+2. Legal entity - **DAO.Link** company \(asset, but not an internal capital\)
 {% endhint %}
 
   
