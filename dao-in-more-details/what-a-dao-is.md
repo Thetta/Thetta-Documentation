@@ -2,13 +2,9 @@
 
 ![Johann Barbie, Parseclabs.org](../.gitbook/assets/153890270935383106.png)
 
-## **DO vs DAO**
+**A decentralized autonomous organization \(DAO\)** is an entity that exists autonomously, but also heavily relies on hiring individuals to perform certain tasks that the automation itself cannot do.
 
-**A decentralized organization \(DO\)** takes the same concept of a human organization, and decentralizes it. Instead of a hierarchical structure managed by a set of humans interacting in person and controlling property via the legal system, a decentralized organization involves a set of humans interacting with each other according to a protocol.
-
-**A decentralized autonomous organization \(DAO\)** is an entity that lives "on the internet" and exists autonomously, but also heavily relies on hiring individuals to perform certain tasks that the automation itself cannot do.
-
-The obvious difference between a DO and a DAO, and the one inherent in the language, is the word “autonomous”; that is, in a DO the humans are the ones making the decisions, and a DAO is something that, _in some fashion_, makes decisions for itself.  
+The obvious difference between a decentralized organization \(DO\) and a decentrazlied autonomoud organization \(DAO\), and the one inherent in the language, is the word “autonomous”; that is, in a DO the humans are the ones making the decisions, and a DAO is something that, _in some fashion_, makes decisions for itself.  
 
 ## What DAO is and what DAO is not
 

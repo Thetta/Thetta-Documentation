@@ -21,7 +21,7 @@ In this sense we either:
 
 ## Definition \(weak\) of an "Autonomous"
 
-[Wiki](https://en.wikipedia.org/wiki/Autonomy) has this definition of an "autonomous organization": "Autonomous organizations are independent or self-governing". It sounds good and is short, but definitions of "independence" and "self-governance" are very ambiguous. 
+[Wiki](https://en.wikipedia.org/wiki/Autonomy) has this definition of an "autonomous organization": "Autonomous organizations are independent or self-governing". It sounds good and is short, but definitions of "independence" and "self-governance" are very ambiguous. That's why we are going to introduce our own definition:
 
 {% hint style="success" %}
 \(TODO, fix it\) Our definition: **"In autonomous organizations logic can make decisions based on objective facts provided by other actors"**
