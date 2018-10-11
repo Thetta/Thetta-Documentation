@@ -137,7 +137,13 @@ Example: a Blockchain \(as a system\) features 1 and 2, but not 3 because whole 
         the world")</td>
     </tr>
   </tbody>
-</table>## **Resume. Why “Decentralized”?**
+</table>## Why "Any Ethereum DApp" above is not politically decentralized?
+
+In it's simplest form, Ethereum DApp is controlled only by 1 owner \(who deployed smart contracts\).
+
+   
+
+## **Resume. Why “Decentralized”?**
 
 Three reasons for Decentralization:
 

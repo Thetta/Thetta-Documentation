@@ -21,12 +21,10 @@ In this sense we either:
 
 ## Definition \(weak\) of an "Autonomous"
 
-[Wiki](https://en.wikipedia.org/wiki/Autonomy) has this definition of an "autonomous organization": 
-
-> "Autonomous organizations are independent or self-governing."
+[Wiki](https://en.wikipedia.org/wiki/Autonomy) has this definition of an "autonomous organization": "Autonomous organizations are independent or self-governing". It sounds good and is short, but definitions of "independence" and "self-governance" are very ambiguous. 
 
 {% hint style="success" %}
-Our definition: **"In autonomous organizations logic can make decisions based on objective facts provided by other actors"**
+\(TODO, fix it\) Our definition: **"In autonomous organizations logic can make decisions based on objective facts provided by other actors"**
 {% endhint %}
 
 Speaking about DAOs and crypto, we are going to use this definition instead of a stronger definition mentioned above. In this sense, Bitcoin is "autonomous" and TheDAO is "autonomous" too. 
