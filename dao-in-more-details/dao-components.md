@@ -139,9 +139,13 @@ Example: a Blockchain \(as a system\) features 1 and 2, but not 3 because whole 
   </tbody>
 </table>## Why "Any Ethereum DApp" above is not politically decentralized?
 
-In it's simplest form, Ethereum DApp can be controlled only by single owner \(who deployed smart contract\) so it is a politically **centralized** system. 
+In it's simplest form, Ethereum DApp can be controlled only by a single owner \(who deployed smart contract\) so it is a politically **centralized** system.
 
 Even though DApp runs on top of blockchain, blockchain "operator" \(miners, developers, etc\) DOES NOT have a FULL control of the DApp. So in this case, even though blockchain as a system IS politically decentralized, DApp on top of it IS NOT.
+
+{% hint style="success" %}
+Synthetic definition by Thetta: **"A system is Decentralized if it is politically decentralized AND architecturally decentrazlied"**
+{% endhint %}
 
 ## **Resume. Why “Decentralized”?**
 
