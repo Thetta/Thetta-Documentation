@@ -55,10 +55,11 @@ In order to be a DAO, system:
     <tr>
       <td style="text-align:left">2-of-3 multisig wallet</td>
       <td style="text-align:left">+</td>
-      <td style="text-align:left">?</td>
       <td style="text-align:left">+</td>
       <td style="text-align:left">+</td>
-      <td style="text-align:left">? No</td>
+      <td style="text-align:left">+</td>
+      <td style="text-align:left"><b>Yes</b>
+      </td>
     </tr>
     <tr>
       <td style="text-align:left">Bitcoin, BTC

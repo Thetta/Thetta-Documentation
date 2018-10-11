@@ -103,7 +103,7 @@ Example: a Blockchain \(as a system\) features 1 and 2, but not 3 because whole 
       </td>
       <td style="text-align:left">
         <p>-</p>
-        <p>(not necessary has many owners, can be controlled by a single entity)</p>
+        <p>(see below)</p>
       </td>
       <td style="text-align:left">+</td>
       <td style="text-align:left">
@@ -139,9 +139,9 @@ Example: a Blockchain \(as a system\) features 1 and 2, but not 3 because whole 
   </tbody>
 </table>## Why "Any Ethereum DApp" above is not politically decentralized?
 
-In it's simplest form, Ethereum DApp is controlled only by 1 owner \(who deployed smart contracts\).
+In it's simplest form, Ethereum DApp can be controlled only by single owner \(who deployed smart contract\) so it is a politically **centralized** system. 
 
-   
+Even though DApp runs on top of blockchain, blockchain "operator" \(miners, developers, etc\) DOES NOT have a FULL control of the DApp. So in this case, even though blockchain as a system IS politically decentralized, DApp on top of it IS NOT.
 
 ## **Resume. Why “Decentralized”?**
 
