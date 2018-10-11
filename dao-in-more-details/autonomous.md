@@ -21,8 +21,7 @@ In this sense we either:
 
 ## Definition of an "Autonomous" \(by Thetta\)
 
-[Wiki](https://en.wikipedia.org/wiki/Autonomy) has this definition:  
-"Autonomous organizations are independent or self-governing". It sounds good and is short, but definitions of "independence" and "self-governance" are very ambiguous. That's why we are going to introduce our own definition:
+[Wiki](https://en.wikipedia.org/wiki/Autonomy): "Autonomous organizations are independent or self-governing". It sounds good and is short, but definitions of "independence" and "self-governance" are very ambiguous. That's why we are going to introduce our own definition:
 
 {% hint style="success" %}
 Synthetic definition by Thetta \(strong\): **"A system is Autononomous in the particular environment - if it does NOT obey rules of the system located on the same or higher level"**

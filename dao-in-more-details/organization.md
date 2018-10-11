@@ -2,7 +2,7 @@
 
 ## Definition of an "Organization"
 
-Wiki: "An organization is an entity comprising multiple people, such as an institution or an association, that has a collective goal and is linked to an external environment."
+[Wiki](https://en.wikipedia.org/wiki/Organization): "An organization is an entity comprising multiple people, such as an institution or an association, that has a collective goal and is linked to an external environment."
 
 {% hint style="success" %}
 Synthetic definition by Thetta: **"An organization is an entity that is comprised of multiple actors \(humans, smart contracts, etc\) with clear governance rules, incentives and internal capital.**
