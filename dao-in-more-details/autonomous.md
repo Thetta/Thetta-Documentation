@@ -21,14 +21,24 @@ In this sense we either:
 
 ## Definition of "Autonomous" \(by Thetta\)
 
-[Wiki](https://en.wikipedia.org/wiki/Autonomy): "Autonomous organizations are independent or self-governing". It sounds good and is short, but definitions of "independence" and "self-governance" are very ambiguous. That's why we are going to introduce our own definition:
+[Wiki](https://en.wikipedia.org/wiki/Autonomy): "Autonomous organizations are independent or self-governing". In this sense USA is an autonomous organization. This definition is too broad, so we are going to use a stronger definition:
 
 {% hint style="success" %}
-Synthetic definition by Thetta \(strong\): **"A system is Autononomous in the particular environment - if it does NOT obey rules of the system located on the same or higher level"**
+Synthetic definition by Thetta: **"A system is Autononomous if it is Automated and Independent"**
 {% endhint %}
 
+### **What is Automated?**
+
 {% hint style="success" %}
-Synthetic definition by Thetta \(weak\): **"A system is Autononomous in the particular environment - if it MOSTLY does NOT obey rules of the system located on the same or higher level"**
+Synthetic definition by Thetta: **"A system is Automated if SOME decisions are made automatically \(by code, smart contracts, business logic, etc\)"**
+{% endhint %}
+
+![](../.gitbook/assets/automated2.png)
+
+### **What is Independent?**
+
+{% hint style="success" %}
+Synthetic definition by Thetta \(weak\): **"A system is Independent in the particular environment - if it MOSTLY does NOT obey rules of the system located on the same or higher level"**
 {% endhint %}
 
 ![](../.gitbook/assets/a1.png)
@@ -38,14 +48,14 @@ Synthetic definition by Thetta \(weak\): **"A system is Autononomous in the part
 
 ![](../.gitbook/assets/a2%20%281%29.png)
 
-1. The Mobile dept. obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations.  But Mobile dept. is NOT autonomous because it obeys rules of the Design dept. \(same level\) too; 
-2. The Design dept. obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations. But Design dept. is NOT autonomous because it obeys rules of Tim Cook \(higher level\) too; 
-3. Tim Cook obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations. But Tim Cook DOES NOT obey rules of a Design dept. and there is no one above him! That's why he is Autonomous.
+1. The Mobile dept. obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations.  But Mobile dept. is NOT independent because it obeys rules of the Design dept. \(same level\) too; 
+2. The Design dept. obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations. But Design dept. is NOT independent because it obeys rules of Tim Cook \(higher level\) too; 
+3. Tim Cook obeys rules of Apple Inc. **and** Legal system **and** USA **and** World **and** United Nations. But Tim Cook DOES NOT obey rules of a Design dept. and there is no one above him! That's why he is independent.
 
 {% hint style="danger" %}
-Still, in reality there is no even a single system that is trully autonomous \(in this sense\). Even Tim Cook has some formal/informal input from the same level \(CEOs of Samsung, chip manufacturers, etc\) and from the level above \(Apple investors\).
+Still, in reality there is no even a single system that is trully independent \(in this sense\). Even Tim Cook has some formal/informal input from the same level \(CEOs of Samsung, chip manufacturers, etc\) and from the level above \(Apple investors\).
 
-That is why a "weak" version of definition above is used by us.
+Definition above is "weak" because in order to be "independent" one should not be a 100% independent.
 {% endhint %}
 
 ## Who is Autonomous and who is not?
@@ -89,30 +99,18 @@ That is why a "weak" version of definition above is used by us.
     <tr>
       <td style="text-align:left">Russian Federation</td>
       <td style="text-align:left">Legal entity</td>
-      <td style="text-align:left"></td>
+      <td style="text-align:left">United Nations</td>
       <td style="text-align:left"></td>
     </tr>
     <tr>
       <td style="text-align:left">North Korea</td>
       <td style="text-align:left">Legal entity</td>
-      <td style="text-align:left"></td>
+      <td style="text-align:left">United Nations</td>
       <td style="text-align:left"></td>
     </tr>
     <tr>
       <td style="text-align:left">Ethereum</td>
       <td style="text-align:left">Blockchain system</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left">(TODO) DO example here</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
       <td style="text-align:left"></td>
       <td style="text-align:left"></td>
     </tr>

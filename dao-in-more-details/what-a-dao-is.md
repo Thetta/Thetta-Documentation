@@ -11,7 +11,7 @@ The obvious difference between a decentralized organization \(DO\) and a decentr
 In order to be a DAO, system:
 
 * D - Should be politically AND architecturally decentralized;
-* A \(weak\) - should \(mostly\) not obey rules of the system located on the same or higher level
+* A - Should make ****some decisions automatically AND should ****not obey rules of the system located on the same or higher level;
 * O - Should be comprised of multiple actors with clear governance rules, incentives and internal capital.
 
 
