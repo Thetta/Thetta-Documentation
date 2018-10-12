@@ -1,3 +1,7 @@
+---
+description: (still under construction)
+---
+
 # Why and when do you need a DAO
 
 ![Johann Barbie, Parseclabs.org](../.gitbook/assets/153890408941800256.png)

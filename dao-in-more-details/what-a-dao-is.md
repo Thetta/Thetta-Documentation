@@ -1,3 +1,7 @@
+---
+description: (still under construction)
+---
+
 # What a DAO is
 
 ![Johann Barbie, Parseclabs.org](../.gitbook/assets/153890270935383106.png)

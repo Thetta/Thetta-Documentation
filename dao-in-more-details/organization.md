@@ -1,3 +1,7 @@
+---
+description: (still under construction)
+---
+
 # Organization
 
 ## Definition of an "Organization"

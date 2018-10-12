@@ -1,3 +1,7 @@
+---
+description: (still under construction)
+---
+
 # Decentralized
 
 ## Definition of **"Decentralized"**
