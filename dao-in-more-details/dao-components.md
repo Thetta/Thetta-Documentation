@@ -12,9 +12,9 @@ Often, people think that “decentralized” means “uses blockchain", but that
 
 As stated by Vitalik Buterin in the article above, when we say “decentralization” we mean these different terms:
 
-1. Political \(de\)centralization — how many individuals or organizations ultimately control the computers that the system is made up of?
-2. Architectural \(de\)centralization — how many physical computers is a system made up of? How many of those computers can it tolerate breaking down at any single time?
-3. Logical \(de\)centralization— does the interface and data structures that the system presents and maintains look more like a single monolithic object, or an amorphous swarm?
+1. Political decentralization — system is not controlled by a single  individual or organization;
+2. Architectural decentralization —  system can tolerate if some parts \(computers, nodes, etc\) are broken;
+3. Logical decentralization— system's interface and data structures look like an amorphous swarm, but not as a single monolithic object; 
 
 ### Heuristics
 

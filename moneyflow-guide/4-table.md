@@ -36,25 +36,39 @@ Notable functions:
 {% code-tabs %}
 {% code-tabs-item title="Moneyflow table example.sol" %}
 ```javascript
-WeiTable table = new MoneyflowTable();
+WeiTable weiTable = new WeiTable();
+weiTable.addAbsoluteExpense();
+uint salaries = weiTable.getLastNodeId();
 
-uint spendsId = table.addUnsortedSplitter();
-uint salariesId = table.addUnsortedSplitter();
-uint employee1Id = table.addAbsoluteExpense(10*eth, false, false, 0, outputForEmployee1);
-uint employee2Id = table.addAbsoluteExpense(15*eth, false, false, 0, outputForEmployee2);
-uint employee3Id = table.addAbsoluteExpense(8*eth, false, false, 0, outputForEmployee3);
+weiTable.addAbsoluteExpense(10*eth, false, false, 0);
+uint employee1 = weiTable.getLastNodeId();
 
-table.addChild(spendsId, salariesId);
-table.addChild(salariesId, employee1Id);
-table.addChild(salariesId, employee2Id);
-table.addChild(salariesId, employee3Id);
+weiTable.addAbsoluteExpense(30*eth, false, false, 0);
+uint employee2 = weiTable.getLastNodeId();
 
-// TODO - send money
+weiTable.addAbsoluteExpense(50*eth, false, false, 0);
+uint employee3 = weiTable.getLastNodeId();
 
-// TODO - check balances
+weiTable.addChildAt(salaries, employee1);
+weiTable.addChildAt(salaries, employee2);
+weiTable.addChildAt(salaries, employee3);
 
-// TODO - withdraw salary
+// check needs
+weiTable.getTotalWeiNeeded(100*eth); // 90*eth
+weiTable.getMinWeiNeeded(); // 90*eth
 
+// send money
+weiTable.processFunds.value(90*eth)(90*eth);
+
+// check balances
+weiTable.balanceAt(employee1); // 10*eth
+weiTable.balanceAt(employee2); // 30*eth
+weiTable.balanceAt(employee3); // 50*eth
+
+// withdraw salary
+weiTable.flushToAt(employee1, employee1_address);
+weiTable.flushToAt(employee2, employee2_address);
+weiTable.flushToAt(employee3, employee3_address);
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
