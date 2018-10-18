@@ -14,7 +14,7 @@ As stated by Vitalik Buterin in the article above, when we say “decentralizati
 
 1. Political decentralization — system is not controlled by a single  individual or organization;
 2. Architectural decentralization —  system can tolerate if some parts \(computers, nodes, etc\) are broken;
-3. Logical decentralization— system's interface and data structures look like an amorphous swarm, but not as a single monolithic object; 
+3. Logical decentralization— system does not behave like a single entity; system's interface and data structures are not monolithic. 
 
 ### Heuristics
 
