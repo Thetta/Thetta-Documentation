@@ -10,7 +10,7 @@ Notable functions:
 * _getMinWeiNeeded_\(\) – returns a minimum amount of ETH, which node will accept;
 * _getTotalWeiNeeded_\(\) – returns a maximum amount of ETH, which node will accept.
 
-The basic algorithm for moneyflow is to first request _getTotalWeiNeed_\(\) ****from moneyflow entry point \(root node\), and then send ETH by calling _processFunds_\(\) ****function with the correct amount.
+The basic algorithm for moneyflow is to first request _getTotalWeiNeed_\(\) from moneyflow entry point \(root node\), and then send ETH by calling _processFunds_\(\) function with the correct amount.
 
 {% hint style="info" %}
 **WeiReceiver** will throw an exception, if you send money to it directly. Instead you should use  _processFunds_\(\) function.
@@ -23,10 +23,10 @@ There are 2 types of WeiReceivers currently:
 * Absolute - consumes absolute amounts of ETH, e.g.: 1 ETH;
 * Relative - consumes relative amounts of ETH, e.g.: 20%.
 
-The difference between _getMinWeiNeeded_\(\) or _getTotalWeiNeed_\(\) ****exists only in cases when the current scheme has at least one relative receiver. If the scheme consists of absolute receivers only, the behavior of this two functions is the same.
+The difference between _getMinWeiNeeded_\(\) or _getTotalWeiNeed_\(\) exists only in cases when the current scheme has at least one relative receiver, or when minimal amount is not equal to total needed amount (absolute expense). If the scheme consists of absolute receivers with equal minimal amount and total needed amount only, the behavior of this two functions is the same.
 
 {% hint style="info" %}
-**WeiReceiver** will throw an exception, if you send more than _getTotalWeiNeeded_\(\) __or less than _getMinWeiNeeded_\(\)_._
+**WeiReceiver** will throw an exception, if you send more than _getTotalWeiNeeded_\(\) or less than _getMinWeiNeeded_\(\)
 {% endhint %}
 
 ### Code example
@@ -41,7 +41,7 @@ uint totalNeeded = relativeExpense.getTotalWeiNeeded(100*eth); // 10*eth is 10% 
 // will consume 10 ETH
 relativeExpense.processFunds.value(totalNeeded)(100*eth);
 
-WeiAbsoluteExpense absoluteExpense = new WeiAbsoluteExpense(10*eth);
+WeiAbsoluteExpense absoluteExpense = new WeiAbsoluteExpense(10*eth, 10*eth);
 isNeeds = absoluteExpense.isNeedsMoney(); // true
 minNeeded = absoluteExpense.getMinWeiNeeded(); // 10*eth 
 totalNeeded = absoluteExpense.getTotalWeiNeeded(10*eth); // 10*eth
