@@ -20,8 +20,7 @@ Notable functions:
 * _getTotalWeiNeededAt_\(\) – returns a maximum amount of ETH, which node will accept;
 * _addAbsoluteExpense_\(\) – create absolute expense node; it should be connected to a splitter in the weiTable
 * _addRelativeExpense_\(\) – create relative expense node; it should be connected to a splitter in the weiTable
-* _addTopdownSplitter_\(\) – create topdown splitter node; it should be connected to a splitter in the weiTable
-* _addUnsortedSplitter_\(\) – create unsorted splitter node; it should be connected to a splitter in the weiTable
+* _addSplitter_\(\) – create splitter node; it should be connected to a splitter in the weiTable
 * _addChildAt_\(\) – connect a node to a splitter or 0-node
 * _openAt_\(\) – make node acceptable for transfer amounts. By default, all nodes are open
 * _closeAt_\(\) – make node non-acceptable for transfer amounts. If node is closed, needed amount is 0, and processFunds will revert.
@@ -40,13 +39,13 @@ WeiTable weiTable = new WeiTable();
 weiTable.addAbsoluteExpense();
 uint salaries = weiTable.getLastNodeId();
 
-weiTable.addAbsoluteExpense(10*eth, false, false, 0);
+weiTable.addAbsoluteExpense(10*eth, 10*eth, false, false, 0);
 uint employee1 = weiTable.getLastNodeId();
 
-weiTable.addAbsoluteExpense(30*eth, false, false, 0);
+weiTable.addAbsoluteExpense(30*eth, 30*eth, false, false, 0);
 uint employee2 = weiTable.getLastNodeId();
 
-weiTable.addAbsoluteExpense(50*eth, false, false, 0);
+weiTable.addAbsoluteExpense(50*eth, 50*eth, false, false, 0);
 uint employee3 = weiTable.getLastNodeId();
 
 weiTable.addChildAt(salaries, employee1);
@@ -55,7 +54,7 @@ weiTable.addChildAt(salaries, employee3);
 
 // check needs
 weiTable.getTotalWeiNeeded(100*eth); // 90*eth
-weiTable.getMinWeiNeeded(); // 90*eth
+weiTable.getMinWeiNeeded(100*eth); // 90*eth
 
 // send money
 weiTable.processFunds.value(90*eth)(90*eth);
