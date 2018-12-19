@@ -4,7 +4,6 @@
 **WeiSplitter** consumes no ETH, so it polls its children in order to return the amount of ETH needed:
 
 ```javascript
-// TODO
 WeiSplitter splitter = new WeiSplitter();
 ```
 
