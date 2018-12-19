@@ -5,85 +5,122 @@
 
 ```javascript
 // TODO
-splitter = ...
+WeiSplitter splitter = new WeiSplitter();
 ```
 
-There are two types of splitters: 
+Splitter can be _open\(\)_ or _close\(\)_. In opened state splitter can receive ETH, but in closed state it ignores childrens' needs and does not accept money.
 
-* **WeiTopDownSplitter** - the order of children nodes matters;
-* **WeiUnsortedSplitter** - the order of children nodes does not matter.
-
-Splitter can be **open\(\)** or **close\(\)**. In opened state splitter can receive ETH, but in closed state it ignores childrens' needs and does not accept money.
-
-You can **addChild\(\)** to splitter, **getChild\(\)** or or **getChildrenCount\(\)**.
+You can _addChild\(\)_ to splitter, _getChild\(\)_ or or _getChildrenCount\(\)_.
 
 {% hint style="info" %}
 You SHOULD NOT send more ETH than needed to the splitter! It will throw an exception.
 {% endhint %}
 
-## 1. **WeiTopDownSplitter**
+There are 3 possible types of a splitter. 
+* _Type.Splitter_: initial one. If no children, or if all children are splitters. Can accept absolute/relative, after that splitter will change it's own type to _Type.Absolute/Type.Relative_ respectievly.
+* _Type.Absolute_: if at least one child is absolute expense. Can't accept relative expense – only absolute expense or splitter.
+* _Type.Relative_: if at least one child is relative expense. Can't accept absolute expense – only relative expense or splitter.
 
-In a top-down splitter ETH is flowing from the top to bottom. That is why the order of children nodes is very important. 
+In a splitter ETH is flowing from the first child to the last one. That is why the order of children nodes is very important. 
 
-However, if splitter contains only absolute expenses, order does not matter.   
-****
+There are some special cases for a splitter.
+
+### 1. Relative expenses follow each other.
+
+```javascript
+WeiSplitter splitterRelative = new WeiSplitter();
+WeiRelativeExpense expense1 = new WeiRelativeExpense(250000);
+WeiRelativeExpense expense2 = new WeiRelativeExpense(250000);
+
+WeiSplitter splitterExpense = new WeiSplitter();
+WeiAbsoluteExpense expense3 = new WeiAbsoluteExpense(8*eth);
+
+splitterExpense.addChild(expense3);
+
+splitterRelative.addChild(expense1);
+splitterRelative.addChild(expense2);
+splitterRelative.addChild(splitterExpense);
+
+splitterRelative.getTotalWeiNeeded(1*eth); // 16*eth;
+splitterRelative.getTotalWeiNeeded(16*eth); // 16*eth;
+splitterRelative.getTotalWeiNeeded(100*eth); // 16*eth;
+```
+
+In this case the percentages are taken from the initial amount received at the entrance.
+25% of 16*eth (4*eth) goes to expense1,  25% of 16*eth (4*eth) goes to expense2, 8*eth goes to expense3. 
+
+You can not rearrange expenses in this example, bacause relative expense will be at the end, and while it takes only 25% of the flow, some part of the flow will remain on the splitter balance => revert. We can add additional relative expense to the end, that takes 100% of the flow.
+
+With connections from the previous example, it will be like this:
+```javascript
+WeiSplitter splitterRelative = new WeiSplitter();
+WeiRelativeExpense expense1 = new WeiRelativeExpense(250000);
+WeiRelativeExpense expense2 = new WeiRelativeExpense(250000);
+WeiRelativeExpense expense4 = new WeiRelativeExpense(1000000);
+
+WeiSplitter splitterExpense = new WeiSplitter();
+WeiAbsoluteExpense expense3 = new WeiAbsoluteExpense(8*eth);
+
+splitterExpense.addChild(expense3);
+
+splitterRelative.addChild(expense1);
+splitterRelative.addChild(expense2);
+splitterRelative.addChild(splitterExpense);
+splitterRelative.addChild(expense4);
+
+splitterRelative.getTotalWeiNeeded(1*eth); // 16*eth;
+splitterRelative.getTotalWeiNeeded(16*eth); // 16*eth;
+splitterRelative.getTotalWeiNeeded(100*eth); // 100*eth;
+```
+Lets swap splitterExpense and expense2:
+
+```javascript
+WeiSplitter splitterRelative = new WeiSplitter();
+WeiRelativeExpense expense1 = new WeiRelativeExpense(250000);
+WeiRelativeExpense expense2 = new WeiRelativeExpense(250000);
+WeiRelativeExpense expense4 = new WeiRelativeExpense(1000000);
+
+WeiSplitter splitterExpense = new WeiSplitter();
+WeiAbsoluteExpense expense3 = new WeiAbsoluteExpense(8*eth);
+
+splitterExpense.addChild(expense3);
+
+splitterRelative.addChild(expense1);
+splitterRelative.addChild(splitterExpense);
+splitterRelative.addChild(expense2);
+splitterRelative.addChild(expense4);
+
+splitterRelative.getTotalWeiNeeded(1*eth); // (32/3)*eth;
+splitterRelative.getTotalWeiNeeded((32/3)*eth); // (32/3)*eth;
+splitterRelative.getTotalWeiNeeded(16*eth); // 16*eth;
+splitterRelative.getTotalWeiNeeded(100*eth); // 100*eth;
+```
+In this case 25% of 16*eth (4*eth) goes to expense1, 8*eth goes to expense3, 25% of (16 - 4 - 8 = 4)  4*eth*25% = 1*eth goes to expense2, 3*eth goes to expense4. 
 
 ![](https://lh3.googleusercontent.com/hQoFzWjyGofSjlBVOBXE6rI6-ak8yZEVJ9JFGyU9oIVPDUl8XENlD3qzjCmG4l0Pu-UJisEiPoBvbxgk2d2EiblKbVZrEgOJFNUWwiD5c0_kO4b-k8KIWiGn024eqt7TJZFKx3qn)
 
-{% code-tabs %}
-{% code-tabs-item title="WeiTopDownSplitter example.sol" %}
+### 2. Absolute expenses with minAmount > 0.
+
 ```javascript
-WeiTopDownSplitter allOutpults = new WeiTopDownSplitter('AllOutpults');
-WeiUnsortedSplitter spends = new WeiUnsortedSplitter('Spends');
-WeiUnsortedSplitter salaries = new WeiUnsortedSplitter('Salaries');
-WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(10*eth);
-WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(15*eth);
-WeiAbsoluteExpense employee3 = new WeiAbsoluteExpense(8*eth);
+WeiSplitter splitter = new WeiSplitter();
+WeiAbsoluteExpense expense1 = new WeiAbsoluteExpense(500*eth, 1000*eth);
+WeiAbsoluteExpense expense2 = new WeiAbsoluteExpense(200*eth, 800*eth);
+WeiAbsoluteExpense expense3 = new WeiAbsoluteExpense(500*eth, 1500*eth);
 
-// CONNECTIONS
-allOutpults.addChild(spends);
-spends.addChild(salaries);
-salaries.addChild(employee1);
-salaries.addChild(employee2);
-salaries.addChild(employee3);
+await splitter.addChild(expense1);
+await splitter.addChild(expense2);
+await splitter.addChild(expense3);
 
-// TODO - ask needed amounts, etc
-// TODO - send money
-// TODO - show employee1, employee2, etc balances
+splitter.getTotalWeiNeeded(100*eth) //0*eth
+splitter.getTotalWeiNeeded(200*eth) //200*eth: expense2 get 200
+splitter.getTotalWeiNeeded(300*eth) //200*eth: expense2 get 200
+splitter.getTotalWeiNeeded(500*eth) //500*eth: expense1 get 500
+splitter.getTotalWeiNeeded(600*eth) //500*eth: expense1 get 500
+splitter.getTotalWeiNeeded(700*eth) //700*eth: expense1 get 500 expense2 get 200
+splitter.getTotalWeiNeeded(800*eth) //700*eth: expense1 get 500 expense2 get 200
+splitter.getTotalWeiNeeded(900*eth) //900*eth: expense1 get 500 expense2 get 400
+splitter.getTotalWeiNeeded(1000*eth) //1000*eth: expense1 get 1000
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-## **2. WeiUnsortedSplitter**
-
-In unsorted splitter there is no difference how children are ordered, i.e. you can swap any elements and the result will still stay the same.  
-****![](https://lh5.googleusercontent.com/QeenERRhJwgH-zDVtHUZiOLhL0R9qa4jd4xtu8USx9LmGI7-O0w86rxPaX2Igphnm0VbX1FsKhtkBzud1odoKqgD4pGb8nDO2bEfUj-Kh1EpgtsGVe7xuKa-6CDeuMzn6ryGyx5u)
-
-{% code-tabs %}
-{% code-tabs-item title="WeiUnsortedSplitter example 1.sol" %}
-```javascript
-WeiUnsortedSplitter salaries = new WeiUnsortedSplitter('Salaries');
-WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(1*eth);
-WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(2*eth);
-
-salaries.addChild(employee1);
-salaries.addChild(employee2);
-
-salaries.getMinWeiNeeded(); // 3 eth
-salaries.getTotalWeiNeeded(); // 3 eth
-salaries.isNeedsMoney(); // true
-
-salaries.processFunds.value(3*eth)(3*eth);
-
-salaries.getMinWeiNeeded(); // 0
-salaries.getTotalWeiNeeded(); // 0
-salaries.isNeedsMoney(); // false
-
-address(employee1).balance() // 1 eth
-address(employee2).balance() // 2 eth
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-
-
+In this case, if flow amount is not enough for a minimal minAmount of expenses, _getTotalWeiNeeded()_ will return 0.
+If flow amount is enough for a minimal minAmount of expenses, _getTotalWeiNeeded()_ will return that minimal amount, even if expense with this minAmount is not a first child in a splitter.
+If flow amount is enough for a minAmount of a first child, not enough for a 2\*minAmount of a first child, but enough for a minAmount of a first child plus n\*minAmount of another child, then first child will get minAmount and another child will get n\*minAmount.
