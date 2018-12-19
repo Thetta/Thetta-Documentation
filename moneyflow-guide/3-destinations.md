@@ -1,13 +1,9 @@
 # 3 - Destinations
 
 Destination – is a terminal **WeiReceiver** element, i.e. does not send money further.   
-There are three basic types of destinations: 
+There are following basic types of destinations: 
 
-* **WeiFund**s:
-  * **WeiFund**
-  * **WeiFundWithPeriod**
-  * **WeiFundWithPeriodSliding**
-* **WeiExpense**s:
+* **WeiExpense**'s:
   * **WeiAbsoluteExpense**
   * **WeiAbsoluteExpenseWithPeriod**
   * **WeiAbsoluteExpenseWithPeriodSliding**
@@ -18,119 +14,70 @@ There are three basic types of destinations:
 
 Each destination has _flush\(\)_ and _flushTo\(\)_ ****functions, that will send collected funds to the owner or any address respectively.
 
-## 1. WeiFund
+## 1. WeiAbsoluteExpense
+**WeiAbsoluteExpense** have 2 parameters: totalWeiNeeded, minAmount, period
 
-**WeiFund** – is a destination that can accept any amount, until the cap is reached \(if cap is set\). 
+### 1.1. WeiAbsoluteExpense with minAmount==0
+
+**WeiAbsoluteExpense** with minAmount==0 – is a destination that can accept any amount, until the cap is reached. 
 
 Funds can be used as a buffer between customer payments and the main money flow of an organization, or just to store money \(e.g.: reserve fund of a corporation\).
 
 {% hint style="info" %}
-Fund can not be relative.
+Unlike absolute expense with minAmount==totalWeiNeeded, this one can accept less ETH than it needs.
 {% endhint %}
 
-{% hint style="info" %}
-Unlike absolute expense, fund can accept less ETH than it needs.
-{% endhint %}
-
-TODO - add pic of a generic fund
-
-### WeiOneTimeFund / WeiInfiniteFund
-
-**WeiOneTimeFund** has a cap only. You can pull ETH from it ****many times, and it will not affect the cap.**WeiInfiniteFund** has no cap, and it will keep consuming any amount of ETH forever.
-
-{% code-tabs %}
-{% code-tabs-item title="" %}
 ```javascript
-WeiOneTimeFund fund = new WeiOneTimeFund(10*eth);
-WeiInfiniteFund infiniteFund = new WeiInfiniteFund();
+WeiAbsoluteExpense expense10 = new WeiAbsoluteExpense(10*eth, 0);
+WeiAbsoluteExpense expenseInfinite = new WeiAbsoluteExpense(1000000000*eth, 0);
 
-// 100 ETH is a maximum amount that we can send to the element in the current case
-// Still fund needs only 10 ETH
-fund.getTotalWeiNeeded(100*eth); // 10*eth
-fund.getMinWeiNeeded(); // 0
-fund.isNeedsMoney(); // true
+// 10 ETH is a maximum amount that we can send to the element in the current case
+// Still expense10 needs only 10 ETH
+expense10.getTotalWeiNeeded(100*eth); // 10*eth
+expense10.getMinWeiNeeded(100*eth); // 0
+expense10.isNeedsMoney(); // true
 
-infiniteFund.getTotalWeiNeeded(100*eth); // 100*eth
-infiniteFund.getMinWeiNeeded(); // 0
-infiniteFund.isNeedsMoney(); // true
+expenseInfinite.getTotalWeiNeeded(100*eth); // 100*eth
+expenseInfinite.getMinWeiNeeded(100*eth); // 0
+expenseInfinite.isNeedsMoney(); // true
 
 // send 3 ETH
-fund.processFunds.value(3*eth)(100*eth);
+expense10.processFunds.value(3*eth)(100*eth);
 // send 3 ETH again
-fund.processFunds.value(3*eth)(100*eth);
+expense10.processFunds.value(3*eth)(100*eth);
 
-// now fund needs 4 more ETH
-fund.getTotalWeiNeeded(100*eth); // 4*eth
-fund.getMinWeiNeeded(); // 0
-fund.isNeedsMoney(); // true
+// now expense10 needs 4 more ETH
+expense10.getTotalWeiNeeded(100*eth); // 4*eth
+expense10.getMinWeiNeeded(100*eth); // 0
+expense10.isNeedsMoney(); // true
 
-// send 3 ETH to infiniteFund
-infiniteFund.processFunds.value(3*eth)(100*eth);
+// send 3 ETH to expenseInfinite
+expenseInfinite.processFunds.value(3*eth)(100*eth);
 
-infiniteFund.getTotalWeiNeeded(100*eth); // 100*eth
-infiniteFund.getMinWeiNeeded(); // 0
-infiniteFund.isNeedsMoney(); // true
-
-// flash
-fund.flush();
-
-// Flush was not affected to getTotalWeiNeeded
-fund.getTotalWeiNeeded(100*eth); // 4*eth
-fund.getMinWeiNeeded(); // 0
-fund.isNeedsMoney(); // true
+expenseInfinite.getTotalWeiNeeded(100*eth); // 100*eth
+expenseInfinite.getMinWeiNeeded(100*eth); // 0
+expenseInfinite.isNeedsMoney(); // true
 
 // flash
-infiniteFund.flush();
+expense10.flush();
 
 // Flush was not affected to getTotalWeiNeeded
-infiniteFund.getTotalWeiNeeded(100*eth); // 100*eth
-```
-{% endcode-tabs-item %}
+expense10.getTotalWeiNeeded(100*eth); // 4*eth
+expense10.getMinWeiNeeded(100*eth); // 0
+expense10.isNeedsMoney(); // true
 
-{% code-tabs-item title=undefined %}
-```
+// flash
+expenseInfinite.flush();
 
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-### WeiPeriodicFund / WeiPeriodicFundSliding 
-
-Periodic funds ****have a cap and a period.  
-Imagine, we set cap to 10 ETH and period to 1 week:
-
-```javascript
-uint periodHours = 24 * 7; // 1 week
-WeiPeriodicFund fund = new WeiPeriodicFund(10*eth, periodHours);
-WeiPeriodicFundSliding fundWithSliding = new WeiPeriodicFundSliding(10*eth, periodHours);
-
-// 100 ETH is a maximum amount that we can send to the element in the current case
-// Still fund needs only 10 ETH
-uint totalNeed = fund.getTotalWeiNeeded(100*eth); // 10*eth
-uint minNeeded = fund.getMinWeiNeeded(); // 0
-uint isNeeded = fund.isNeedsMoney(); // true
-
-// send 3 ETH to both funds
-fund.processFunds.value(3*eth)(100*eth);
-fundWithSliding.processFunds.value(3*eth)(100*eth);
-
-// now fund needs 7 more ETH
-totalNeeded = fund.getTotalWeiNeeded(100*eth); // 7*eth
-minNeeded = fund.getMinWeiNeeded(); // 0
-isNeeded = fund.isNeedsMoney(); // true
-
-// 1 week is passed here
-
-// fund needs 10 ETH only
-totalNeeded = fund.getTotalWeiNeeded(100*eth); // 10*eth
-// but fundWithSliding needs 17 ETH
-totalNeeded = fundWithSliding.getTotalWeiNeeded(100*eth); // 17*eth
-
+// Flush was not affected to getTotalWeiNeeded
+expenseInfinite.getTotalWeiNeeded(100*eth); // 100*eth
 ```
 
-## 2. WeiExpense
+TODO - add pic 
 
-**WeiExpense** – is a destination that accepts only _getTotalWeiNeeded_\(\) ****amount of ETH.  
+## 1.2. WeiAbsoluteExpense, WeiAbsoluteExpenseWithPeriod, WeiAbsoluteExpenseWithPeriodSliding with minAmount==totalWeiNeeded
+
+**WeiExpense** with minAmount==totalWeiNeeded – is a destination that accepts only _getTotalWeiNeeded_\(\) amount of ETH.  
     
 TODO - add pic
 
@@ -140,12 +87,12 @@ TODO - add pic
 uint neededWei = 5*eth;
 uint periodInHours = 24;
 
-WeiAbsoluteExpense absoluteExpense = new WeiAbsoluteExpense(neededWei);
-WeiAbsoluteExpenseWithPeriod absoluteExpenseWithPeriod = new WeiAbsoluteExpenseWithPeriod(neededWei, periodInHours);
-WeiAbsoluteExpenseWithPeriodSliding absoluteExpenseWithPeriodSliding = new WeiAbsoluteExpenseWithPeriodSliding(neededWei, periodInHours);
+WeiAbsoluteExpense absoluteExpense = new WeiAbsoluteExpense(neededWei, neededWei);
+WeiAbsoluteExpenseWithPeriod absoluteExpenseWithPeriod = new WeiAbsoluteExpenseWithPeriod(neededWei, neededWei, periodInHours);
+WeiAbsoluteExpenseWithPeriodSliding absoluteExpenseWithPeriodSliding = new WeiAbsoluteExpenseWithPeriodSliding(neededWei, neededWei, periodInHours);
 
 absoluteExpense.getTotalWeiNeeded(100*eth); // 5*eth
-absoluteExpense.getMinWeiNeeded(); // 5*eth
+absoluteExpense.getMinWeiNeeded(100*eth); // 5*eth
 absoluteExpense.isNeedsMoney(); // true
 
 absoluteExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
@@ -168,6 +115,69 @@ absoluteExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 10*eth
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+## 1.3. WeiAbsoluteExpense with minAmount > 0 and minAmount < totalWeiNeeded
+There is one additional requirement: totalWeiNeeded must be a multiple of minAmount.
+
+```javascript
+WeiSplitter splitter = new WeiSplitter();
+
+WeiAbsoluteExpense expense1 = new WeiAbsoluteExpense(500*eth, 1000*eth);
+WeiAbsoluteExpense expense2 = new WeiAbsoluteExpense(200*eth, 800*eth);
+WeiAbsoluteExpense expense3 = new WeiAbsoluteExpense(500*eth, 1500*eth);
+
+splitter.addChild(expense1);
+splitter.addChild(expense2);
+splitter.addChild(expense3);
+
+expense1.getTotalWeiNeeded(3300*eth); // 1000*eth
+expense2.getTotalWeiNeeded(3300*eth); // 800*eth
+expense3.getTotalWeiNeeded(3300*eth); // 1500*eth
+splitter.getTotalWeiNeeded(3300*eth); // 3300*eth
+
+splitter.getTotalWeiNeeded(100*eth) // 0*eth
+splitter.getTotalWeiNeeded(200*eth) // 200*eth
+splitter.getTotalWeiNeeded(300*eth) // 200*eth
+splitter.getTotalWeiNeeded(500*eth) // 500*eth
+splitter.getTotalWeiNeeded(400*eth) // 400*eth
+splitter.getTotalWeiNeeded(800*eth) // 700*eth
+splitter.getTotalWeiNeeded(900*eth) // 900*eth
+splitter.getTotalWeiNeeded(2800*eth) // 2800*eth
+splitter.getTotalWeiNeeded(3300*eth) // 3300*eth
+splitter.getTotalWeiNeeded(3500*eth) // 3300*eth
+
+splitter.processFunds(700*eth);
+
+splitter.getTotalWeiNeeded(100*eth) // 0*eth
+splitter.getTotalWeiNeeded(200*eth) // 200*eth
+splitter.getTotalWeiNeeded(300*eth) // 200*eth
+
+splitter.getTotalWeiNeeded(2500*eth) // 2100*eth
+splitter.getTotalWeiNeeded(2600*eth) // 2600*eth
+splitter.getTotalWeiNeeded(2700*eth) // 2600*eth
+splitter.getTotalWeiNeeded(3300*eth) // 2600*eth
+splitter.getTotalWeiNeeded(3500*eth) // 2600*eth
+
+splitter.processFunds(900*eth);
+
+splitter.getTotalWeiNeeded(100*eth) // 0*eth
+splitter.getTotalWeiNeeded(200*eth) // 200*eth
+splitter.getTotalWeiNeeded(500*eth) // 200*eth
+splitter.getTotalWeiNeeded(600*eth) // 200*eth
+splitter.getTotalWeiNeeded(700*eth) // 700*eth
+splitter.getTotalWeiNeeded(900*eth) // 700*eth
+splitter.getTotalWeiNeeded(1100*eth) // 700*eth
+splitter.getTotalWeiNeeded(1200*eth) // 1200*eth
+splitter.getTotalWeiNeeded(1300*eth) // 1200*eth
+splitter.getTotalWeiNeeded(1700*eth) // 1700*eth
+splitter.getTotalWeiNeeded(1800*eth) // 1700*eth
+splitter.getTotalWeiNeeded(3500*eth) // 1700*eth
+
+splitter.processFunds.value(200*eth)(200*eth);
+splitter.processFunds.value(1500*eth)(1500*eth);
+```
+
+## 2. WeiRelativeExpense, WeiRelativeExpenseWithPeriod, WeiRelativeExpenseWithPeriodSliding
 
 ```javascript
 uint partsPerMillion = 50000;
@@ -199,6 +209,3 @@ relativeExpense.getTotalWeiNeeded(100*eth); // 5*eth
 relativeExpenseWithPeriod.getTotalWeiNeeded(100*eth); // 5*eth
 relativeExpenseWithPeriodSliding.getTotalWeiNeeded(100*eth); // 10*eth
 ```
-
-
-
