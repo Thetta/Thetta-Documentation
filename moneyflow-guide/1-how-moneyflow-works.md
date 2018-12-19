@@ -44,17 +44,17 @@ Although this is absolutely legitimate, it is highly recommended to avoid latter
 ### Code example
 
 ```javascript
-WeiTopDownSplitter root = new WeiTopDownSplitter('Root');
-WeiUnsortedSplitter spends = new WeiUnsortedSplitter('Spends');
-WeiUnsortedSplitter salaries = new WeiUnsortedSplitter('Salaries');
-WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(1*eth);
-WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(2*eth);
-WeiUnsortedSplitter other = new WeiUnsortedSplitter('Other');
-WeiAbsoluteExpense office = new WeiAbsoluteExpense(1*eth);
-WeiUnsortedSplitter rest = new WeiUnsortedSplitter('Rest');
+WeiSplitter root = new WeiSplitter();
+WeiSplitter spends = new WeiSplitter();
+WeiSplitter salaries = new WeiSplitter();
+WeiAbsoluteExpense employee1 = new WeiAbsoluteExpense(1*eth, 1*eth);
+WeiAbsoluteExpense employee2 = new WeiAbsoluteExpense(2*eth, 2*eth);
+WeiSplitter other = new WeiSplitter();
+WeiAbsoluteExpense office = new WeiAbsoluteExpense(1*eth, 1*eth);
+WeiSplitter rest = new WeiSplitter();
 
-WeiOneTimeFund reserveFund = new WeiOneTimeFund(100*eth);
-WeiInfiniteFund dividendsFund = new WeiInfiniteFund();
+WeiAbsoluteExpense reserveFund = new WeiAbsoluteExpense(100*eth, 0);
+WeiAbsoluteExpense dividendsFund = new WeiAbsoluteExpense(1000000000*eth, 0);
 
 // Connect nodes
 other.addChild(office);
